@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NO CHEATERS — Minecraft Server</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--r:#ff003c;--g:#00ff66;--bg:#070709}
+html{background:var(--bg)}
+body{font-family:Inter,system-ui,sans-serif;color:#e8e8ee;overflow-x:hidden;line-height:1.6}
+#bg{position:fixed;inset:0;width:100%;height:100%;z-index:-1;display:block}
+.vig{position:fixed;inset:0;pointer-events:none;z-index:1;background:radial-gradient(ellipse at center,transparent 45%,rgba(0,0,0,.75))}
+#flash{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:50}
+section{position:relative;z-index:2}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;gap:26px}
+.tag{font-family:'Press Start 2P',monospace;font-size:.62rem;color:var(--g);letter-spacing:.08em;text-shadow:0 0 12px var(--g)}
+h1{font-family:'Press Start 2P',monospace;font-weight:400;font-size:clamp(1.3rem,7.4vw,6.4rem);line-height:1.3;white-space:nowrap;color:#fff;text-shadow:3px 3px 0 var(--r),6px 6px 0 #7a001c,0 0 34px rgba(255,0,60,.7)}
+h1 span{color:var(--r);text-shadow:3px 3px 0 #fff3,6px 6px 0 #4a0010,0 0 44px var(--r);animation:fl 3.2s infinite}
+@keyframes fl{0%,92%,100%{opacity:1}94%{opacity:.35}96%{opacity:1}98%{opacity:.5}}
+.sub{max-width:560px;color:#b9b9c6;font-size:1.05rem}
+.ip{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;padding:12px 16px;background:rgba(0,0,0,.55);border:2px solid var(--g);box-shadow:0 0 22px rgba(0,255,102,.35),inset 0 0 14px rgba(0,255,102,.12)}
+.ip code{font-family:VT323,monospace;font-size:clamp(1.2rem,3.6vw,1.9rem);color:var(--g);word-break:break-all;text-shadow:0 0 10px var(--g)}
+.btn{font-family:'Press Start 2P',monospace;font-size:.68rem;padding:14px 18px;background:var(--g);color:#02210e;border:0;cursor:pointer;text-decoration:none;display:inline-block;box-shadow:4px 4px 0 #006b2b;transition:transform .08s,box-shadow .08s}
+.btn:hover{filter:brightness(1.15)}
+.btn:active{transform:translate(4px,4px);box-shadow:0 0 0 #006b2b}
+.btn:focus-visible,.dev a:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.hint{font-family:'Press Start 2P',monospace;font-size:.6rem;color:#8a8a99;animation:bob 1.6s infinite}
+@keyframes bob{50%{transform:translateY(8px)}}
+.tall2{height:260vh}.tall3{height:200vh}
+.stick{position:sticky;top:0;height:100vh;display:flex;align-items:center;padding:0 6vw}
+.right{justify-content:flex-end}
+.glass{max-width:520px;padding:32px;border-radius:6px;background:rgba(14,14,20,.6);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.12);box-shadow:0 0 44px rgba(255,0,60,.14),inset 0 0 0 1px rgba(0,255,102,.05)}
+.glass h2{font-family:'Press Start 2P',monospace;font-weight:400;font-size:clamp(.9rem,2.3vw,1.35rem);line-height:1.7;color:#fff;text-shadow:2px 2px 0 var(--r);margin:12px 0 16px}
+.glass p{color:#c3c3cf;margin-bottom:14px}
+.glass ul{list-style:none;display:grid;gap:8px;margin-bottom:6px}
+.glass li{padding-left:22px;position:relative;color:#dcdce6}
+.glass li:before{content:"";position:absolute;left:0;top:.5em;width:10px;height:10px;background:var(--g);box-shadow:0 0 8px var(--g)}
+#hiss{font-family:VT323,monospace;font-size:1.7rem;color:var(--r);text-shadow:0 0 12px var(--r);min-height:2rem}
+.show{max-width:1100px;margin:auto;padding:14vh 6vw 6vh;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;align-items:center}
+.tilt{perspective:1000px}
+.card3d{transition:transform .15s ease-out;transform:rotateY(-12deg) rotateX(5deg);transform-style:preserve-3d;border-radius:8px;padding:22px;text-align:center;background:linear-gradient(160deg,rgba(255,0,60,.2),rgba(0,255,102,.1) 70%),rgba(10,10,14,.72);border:2px solid var(--r);box-shadow:0 0 30px var(--r),0 0 80px rgba(255,0,60,.35),inset 0 0 30px rgba(255,0,60,.2);animation:glow 3s infinite alternate}
+@keyframes glow{to{border-color:var(--g);box-shadow:0 0 40px var(--g),0 0 100px rgba(0,255,102,.35),inset 0 0 30px rgba(0,255,102,.2)}}
+.card3d img{max-width:100%;max-height:50vh;display:block;margin:0 auto 14px;image-rendering:pixelated;filter:drop-shadow(0 0 18px rgba(255,0,60,.85));transform:translateZ(60px)}
+.card3d .role{font-family:'Press Start 2P',monospace;font-size:.6rem;color:var(--g);text-shadow:0 0 10px var(--g);transform:translateZ(40px)}
+.card3d .nm{font-family:'Press Start 2P',monospace;font-size:clamp(.9rem,2.4vw,1.25rem);color:#fff;margin-top:12px;text-shadow:2px 2px 0 var(--r);transform:translateZ(50px)}
+.dev{text-align:center;padding:34px 26px;border-radius:8px;background:rgba(10,10,14,.7);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:2px solid var(--g);box-shadow:0 0 30px rgba(0,255,102,.4),0 0 80px rgba(0,255,102,.15),inset 0 0 26px rgba(0,255,102,.1)}
+.dev .ico{font-family:'Press Start 2P',monospace;font-size:2.2rem;color:var(--g);text-shadow:0 0 18px var(--g);margin-bottom:18px}
+.dev .nm{font-family:'Press Start 2P',monospace;font-size:clamp(.9rem,2.4vw,1.25rem);color:#fff;margin:10px 0 14px;text-shadow:2px 2px 0 var(--r)}
+.dev p{color:#c3c3cf;margin-bottom:22px}
+.dev a{font-family:'Press Start 2P',monospace;font-size:.66rem;display:inline-block;padding:15px 20px;color:#fff;text-decoration:none;background:var(--r);box-shadow:0 0 22px var(--r),0 0 50px rgba(255,0,60,.5),4px 4px 0 #7a001c;transition:transform .12s,box-shadow .12s}
+.dev a:hover{transform:translate(-2px,-2px);box-shadow:0 0 30px var(--r),0 0 70px rgba(255,0,60,.7),6px 6px 0 #7a001c}
+footer{text-align:center;padding:40px 20px 70px;display:flex;flex-direction:column;align-items:center;gap:18px;color:#7c7c8a;font-size:.8rem}
+#toast{position:fixed;left:50%;bottom:32px;transform:translate(-50%,140px);z-index:60;font-family:'Press Start 2P',monospace;font-size:.7rem;padding:14px 20px;background:var(--g);color:#02210e;box-shadow:0 0 24px var(--g),4px 4px 0 #006b2b;transition:transform .3s cubic-bezier(.2,1.4,.4,1)}
+#toast.on{transform:translate(-50%,0)}
+@media(max-width:800px){.stick{align-items:flex-end;padding:0 4vw 5vh}.glass{padding:22px}}
+@media(prefers-reduced-motion:reduce){.hint,h1 span,.card3d{animation:none}}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div class="vig"></div>
+<div id="flash"></div>
+<div id="toast" role="status">Copied!</div>
+
+<section class="hero" id="s1">
+  <div class="tag rev">MINECRAFT SURVIVAL SERVER</div>
+  <h1 class="rev">NO <span>CHEATERS</span></h1>
+  <p class="sub rev">Play fair or get blown up. One world, one rule, and everyone is watching.</p>
+  <div class="ip rev">
+    <code>NOCHEATERS-Ly999n.aternos.me</code>
+    <button class="btn copy" type="button">COPY IP</button>
+  </div>
+  <div class="hint">SCROLL DOWN</div>
+</section>
+
+<section class="tall2" id="s2">
+  <div class="stick">
+    <div class="glass rev">
+      <div class="tag">RULE #1</div>
+      <h2>HACK ONCE.<br>GET BLOWN UP.</h2>
+      <p>X-ray, fly, kill aura, auto-clickers: if you cheat, you leave. Scroll on and watch what happens to a Creeper that gets too close.</p>
+      <div id="hiss">Creeper approaching...</div>
+    </div>
+  </div>
+</section>
+
+<section class="tall3" id="s3">
+  <div class="stick right">
+    <div class="glass rev">
+      <div class="tag">NIGHT FALLS</div>
+      <h2>THE HORDE<br>IS WATCHING</h2>
+      <p>Zombies at the door and Endermen behind you. Out here the mobs are the only thing you need to fear, not other players.</p>
+      <ul>
+        <li>Fair play, no hacked clients</li>
+        <li>Admin-moderated world</li>
+        <li>Join with one copied address</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="show" id="s4">
+  <div class="tilt rev">
+    <div class="card3d">
+      <img src="https://p.novaskin.me/5230693791.png?class=thumbnail2x" alt="SIDE_GLORY Minecraft skin" referrerpolicy="no-referrer">
+      <div class="role">SERVER ADMIN</div>
+      <div class="nm">SIDE_GLORY</div>
+    </div>
+  </div>
+  <div class="dev rev">
+    <div class="ico">&lt;/&gt;</div>
+    <div class="tag">DEVELOPER</div>
+    <div class="nm">Namith RN</div>
+    <p>Designed and built this site with Three.js and GSAP.</p>
+    <a href="https://namithrn.vercel.app" target="_blank" rel="noopener noreferrer">VIEW PORTFOLIO</a>
+  </div>
+</section>
+
+<footer>
+  <div class="ip"><code>NOCHEATERS-Ly999n.aternos.me</code><button class="btn copy" type="button">COPY IP</button></div>
+  <div>Not affiliated with Mojang or Microsoft.</div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(()=>{
+const T=THREE,U=.1,R=Math.random,cl=x=>Math.min(1,Math.max(0,x)),PI=Math.PI;
+const wide=()=>innerWidth>800;
+
+/* ---------- copy IP + toast ---------- */
+const toast=document.getElementById('toast');let tt;
+document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{
+  const ip='NOCHEATERS-Ly999n.aternos.me';
+  try{await navigator.clipboard.writeText(ip)}catch(e){
+    const a=document.createElement('textarea');a.value=ip;document.body.appendChild(a);a.select();
+    try{document.execCommand('copy')}catch(_){}a.remove();
+  }
+  toast.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove('on'),1800);
+}));
+
+/* ---------- 3D tilt cards ---------- */
+document.querySelectorAll('.tilt').forEach(el=>{
+  const c=el.firstElementChild;
+  const mv=e=>{const r=el.getBoundingClientRect(),p=e.touches?e.touches[0]:e;
+    const x=(p.clientX-r.left)/r.width-.5,y=(p.clientY-r.top)/r.height-.5;
+    c.style.transform=`rotateY(${x*30}deg) rotateX(${-y*30}deg) scale(1.04)`};
+  el.addEventListener('mousemove',mv);el.addEventListener('touchmove',mv,{passive:true});
+  ['mouseleave','touchend'].forEach(ev=>el.addEventListener(ev,()=>c.style.transform=''));
+});
+
+/* ---------- GSAP reveals ---------- */
+gsap.registerPlugin(ScrollTrigger);
+gsap.utils.toArray('.rev').forEach((el,i)=>gsap.from(el,{y:60,opacity:0,duration:1,delay:i<4?i*.12:0,ease:'power3.out',
+  scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none reverse'}}));
+gsap.to('.hint',{opacity:0,scrollTrigger:{trigger:'#s1',start:'top top',end:'25% top',scrub:true}});
+
+/* ---------- Three.js setup ---------- */
+const cv=document.getElementById('bg');
+const ren=new T.WebGLRenderer({canvas:cv,antialias:true,alpha:false});
+ren.setPixelRatio(Math.min(devicePixelRatio,2));ren.setClearColor(0x070709);
+const scene=new T.Scene();scene.fog=new T.FogExp2(0x070709,.017);
+const cam=new T.PerspectiveCamera(60,1,.1,200);
+scene.add(new T.AmbientLight(0x9090b0,.85));
+const dl=new T.DirectionalLight(0xffffff,.9);dl.position.set(4,8,6);scene.add(dl);
+const camLight=new T.PointLight(0xff003c,1.2,30);scene.add(camLight);
+
+/* ---------- pixel texture helpers ---------- */
+function tex(w,h,f){const c=document.createElement('canvas');c.width=w;c.height=h;f(c.getContext('2d'),w,h);
+  const t=new T.CanvasTexture(c);t.magFilter=t.minFilter=T.NearestFilter;return t}
+function nz(x,w,h,b,v){for(let i=0;i<w;i++)for(let j=0;j<h;j++){const d=(R()-.5)*v;
+  x.fillStyle=`rgb(${b[0]+d|0},${b[1]+d|0},${b[2]+d|0})`;x.fillRect(i,j,1,1)}}
+const pix=(x,c,l)=>{x.fillStyle=c;l.forEach(([a,b,w=1,h=1])=>x.fillRect(a,b,w,h))};
+const skin=(b,v,f)=>tex(8,8,(x,w,h)=>{nz(x,w,h,b,v);f&&f(x)});
+const L=t=>new T.MeshLambertMaterial({map:t});
+const B=(w,h,d,m,x,y,z)=>{const o=new T.Mesh(new T.BoxGeometry(w*U,h*U,d*U),m);o.position.set(x*U,y*U,z*U);return o};
+const P=(w,h,d,m,x,y,z)=>{const p=new T.Group();p.position.set(x*U,y*U,z*U);p.add(B(w,h,d,m,0,-h/2,0));return p};
+
+/* ---------- block textures ---------- */
+const OB=tex(16,16,(x,w,h)=>{nz(x,w,h,[22,12,34],20);for(let i=0;i<16;i++)pix(x,'#3d1f63',[[R()*16|0,R()*16|0,2,1]])});
+const GT=tex(16,16,(x,w,h)=>nz(x,w,h,[96,170,56],36));
+const DT=tex(16,16,(x,w,h)=>{nz(x,w,h,[134,96,67],34);for(let i=0;i<6;i++)pix(x,'#6b4a33',[[R()*16|0,R()*16|0,1,1]])});
+const GS=tex(16,16,(x,w,h)=>{nz(x,w,h,[134,96,67],34);x.fillStyle='#5faa38';for(let i=0;i<16;i++)x.fillRect(i,0,1,3+(R()*2|0))});
+const obMat=L(OB),grassMats=[L(GS),L(GS),L(GT),L(DT),L(GS),L(GS)];
+
+/* ---------- Nether portal ---------- */
+function portal(z){
+  const g=new T.Group();
+  [[-1.5,-1],[-1.5,0],[-1.5,1],[1.5,-1],[1.5,0],[1.5,1],[-.5,-2],[.5,-2],[-.5,2],[.5,2]]
+    .forEach(([x,y])=>{const b=new T.Mesh(new T.BoxGeometry(1,1,1),obMat);b.position.set(x,y,0);g.add(b)});
+  const sm=new T.ShaderMaterial({transparent:true,side:T.DoubleSide,uniforms:{t:{value:0}},
+    vertexShader:'varying vec2 v;void main(){v=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
+    fragmentShader:'varying vec2 v;uniform float t;void main(){vec2 p=v*vec2(2.,3.);float a=sin(p.x*6.+t*2.)+sin(p.y*7.-t*3.)+sin((p.x+p.y)*5.+t*1.5)+sin(p.y*13.+p.x*4.+t*2.);a=a/4.*.5+.5;gl_FragColor=vec4(mix(vec3(.25,0.,.55),vec3(.85,.35,1.),a),.8);}'});
+  g.add(new T.Mesh(new T.PlaneGeometry(2,3),sm));
+  const pl=new T.PointLight(0xaa22ff,2.2,22);pl.position.z=2;g.add(pl);
+  g.scale.setScalar(1.8);g.position.set(0,0,z);g.userData.sm=sm;scene.add(g);return g;
+}
+const portalA=portal(-9),portalB=portal(-66);
+
+/* ---------- floating blocks + stars ---------- */
+const blocks=[];const bg=new T.BoxGeometry(1,1,1);
+for(let i=0;i<46;i++){
+  const m=new T.Mesh(bg,i%3?grassMats:obMat);
+  const side=R()<.5?-1:1;
+  m.position.set(side*(4.5+R()*9),(R()-.5)*12,8-R()*76);
+  m.scale.setScalar(.6+R()*1.1);m.rotation.set(R()*PI,R()*PI,0);
+  m.userData={s:(R()-.5)*.8,ph:R()*7,y:m.position.y};scene.add(m);blocks.push(m);
+}
+{const n=700,a=new Float32Array(n*3);for(let i=0;i<n;i++){a[i*3]=(R()-.5)*70;a[i*3+1]=(R()-.5)*34;a[i*3+2]=14-R()*90}
+ const g=new T.BufferGeometry();g.setAttribute('position',new T.BufferAttribute(a,3));
+ scene.add(new T.Points(g,new T.PointsMaterial({color:0xff4466,size:.09,transparent:true,opacity:.7})))}
+
+/* ---------- Creeper ---------- */
+const flashMats=[];
+const CM=t=>{const m=L(t);flashMats.push(m);return m};
+function makeCreeper(){
+  const g=new T.Group(),G=skin([60,170,50],44),
+  F=skin([60,170,50],44,x=>pix(x,'#000',[[1,2,2,2],[5,2,2,2],[3,4,2,2],[2,5,1,3],[5,5,1,3]]));
+  const m=CM(G),h=[m,m,m,m,CM(F),m];
+  g.add(B(8,8,8,h,0,22,0),B(8,12,4,m,0,12,0));
+  const legs=[[-2,2],[2,2],[-2,-2],[2,-2]].map(([x,z])=>{const p=P(4,6,4,m,x,6,z);g.add(p);return p});
+  g.userData.legs=legs;scene.add(g);return g;
+}
+const creeper=makeCreeper();
+
+/* explosion particles */
+const pm=['#3fa535','#4cc23f','#2d7a28','#1a5a1a','#111111','#6b6b6b','#ffffff'].map(c=>new T.MeshLambertMaterial({color:c,emissive:new T.Color(c).multiplyScalar(.25)}));
+const pg=new T.BoxGeometry(.3,.3,.3),parts=[];
+for(let i=0;i<150;i++){
+  const m=new T.Mesh(pg,pm[(R()*pm.length)|0]);
+  const d=new T.Vector3(R()-.5,R()-.35,R()-.2).normalize().multiplyScalar(3+R()*8);
+  m.userData={v:d,s:.5+R()*1.6,sp:new T.Vector3(R()*9,R()*9,R()*9)};
+  m.visible=false;scene.add(m);parts.push(m);
+}
+const boomLight=new T.PointLight(0xffffff,0,40);scene.add(boomLight);
+
+/* ---------- Zombie ---------- */
+function makeZombie(){
+  const g=new T.Group(),Z=skin([88,150,66],30),
+  F=skin([88,150,66],30,x=>{pix(x,'#1c1c5c',[[1,3,2,1],[5,3,2,1]]);pix(x,'#3c6a2c',[[3,4,2,1]]);pix(x,'#2a4a20',[[2,5,4,2]])});
+  const zm=L(Z),sh=L(skin([0,150,175],24)),pa=L(skin([50,50,140],20));
+  g.add(B(8,8,8,[zm,zm,zm,zm,L(F),zm],0,28,0),B(8,12,4,sh,0,18,0));
+  const arms=[-6,6].map(x=>{const p=P(4,12,4,zm,x,22,0);p.rotation.x=-PI/2;g.add(p);return p});
+  const legs=[-2,2].map(x=>{const p=P(4,12,4,pa,x,12,0);g.add(p);return p});
+  g.userData={arms,legs};g.scale.setScalar(1.7);scene.add(g);return g;
+}
+const zombie=makeZombie();
+
+/* ---------- Enderman ---------- */
+function makeEnder(){
+  const g=new T.Group(),dk=new T.MeshLambertMaterial({map:skin([30,22,38],12),emissive:0x120818}),
+  et=tex(8,8,x=>{x.fillStyle='#0e0a12';x.fillRect(0,0,8,8);pix(x,'#e100ff',[[0,4,3,1],[5,4,3,1]]);pix(x,'#ff9bff',[[0,5,3,1],[5,5,3,1]])}),
+  em=new T.MeshLambertMaterial({map:et,emissive:0xffffff,emissiveMap:et});
+  g.add(B(8,8,8,[dk,dk,dk,dk,em,dk],0,46,0),B(8,12,4,dk,0,36,0));
+  const legs=[-2,2].map(x=>{const p=P(2,30,2,dk,x,30,0);g.add(p);return p});
+  const arms=[-5,5].map(x=>{const p=P(2,30,2,dk,x,42,0);g.add(p);return p});
+  g.userData={legs,arms};g.scale.setScalar(1.15);scene.add(g);return g;
+}
+const ender=makeEnder();
+const ep=new T.Group(),epm=new T.MeshBasicMaterial({color:0xb000ff}),epg=new T.BoxGeometry(.14,.14,.14),eps=[];
+for(let i=0;i<40;i++){const m=new T.Mesh(epg,epm);ep.add(m);eps.push(m)}scene.add(ep);
+
+/* ---------- scroll geometry ---------- */
+let a2,h2,a3,h3,a4,Ky=[],Kz=[8,-12,-12,-32,-32,-52];
+function measure(){
+  const vh=innerHeight,s=id=>document.getElementById(id);
+  a2=s('s2').offsetTop;h2=s('s2').offsetHeight-vh;a3=s('s3').offsetTop;h3=s('s3').offsetHeight-vh;a4=s('s4').offsetTop;
+  Ky=[0,a2,a2+h2,a3,a3+h3,a4];
+}
+function camZ(y){for(let i=1;i<Ky.length;i++)if(y<=Ky[i]){
+  const u=cl((y-Ky[i-1])/((Ky[i]-Ky[i-1])||1)),e=u*u*(3-2*u);return Kz[i-1]+(Kz[i]-Kz[i-1])*e}return Kz[5]}
+function resize(){ren.setSize(innerWidth,innerHeight,false);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();measure();ScrollTrigger.refresh()}
+addEventListener('resize',resize);
+let mx=0,my=0;addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=.5-e.clientY/innerHeight});
+
+/* ---------- main loop ---------- */
+const clk=new T.Clock(),hiss=document.getElementById('hiss'),fl=document.getElementById('flash');
+let y=scrollY,ty=scrollY,lastTxt='';
+addEventListener('scroll',()=>ty=scrollY,{passive:true});
+const setTxt=s=>{if(s!==lastTxt){hiss.textContent=s;lastTxt=s}};
+function frame(){
+  requestAnimationFrame(frame);
+  const t=clk.getElapsedTime(),vh=innerHeight,sx=wide()?1:0;
+  y+=(ty-y)*.09;
+  const z=camZ(y);
+  cam.position.set(mx*.7,.3+my*.4,z);cam.lookAt(mx*.9,my*.5+(sx?0:-1.2),z-10);
+  camLight.position.set(0,2,z+3);
+
+  portalA.userData.sm.uniforms.t.value=portalB.userData.sm.uniforms.t.value=t;
+  portalA.rotation.y=Math.sin(t*.4)*.15;portalB.rotation.y=Math.sin(t*.4+2)*.15;
+  blocks.forEach(b=>{const d=b.userData;b.rotation.x+=d.s*.01;b.rotation.y+=d.s*.014;b.position.y=d.y+Math.sin(t+d.ph)*.5});
+
+  /* creeper: swell, flash white, explode */
+  const q2=cl((y-a2)/h2),ph=cl(q2/.45),ex=cl((q2-.5)/.5);
+  const cx=sx?3:0,cy=-2.8,cz=-20;
+  creeper.visible=q2<.5;
+  if(creeper.visible){
+    creeper.scale.setScalar(2.2*(1+ph*.7));
+    creeper.position.set(cx+(ph>0?(R()-.5)*.12*ph:0),cy,cz);
+    creeper.rotation.y=-.35+Math.sin(t*.6)*.3;
+    const w=Math.sin(t*5)*.5*(1-ph);
+    creeper.userData.legs.forEach((l,i)=>l.rotation.x=(i%2?w:-w));
+    const on=ph>0&&Math.sin(ph*ph*90)>0;
+    flashMats.forEach(m=>m.emissive.setScalar(on?.95:0));
+  }
+  const O=new T.Vector3(cx,cy+3.2,cz),tt2=ex*3.4;
+  parts.forEach(p=>{const d=p.userData;p.visible=ex>0;if(!p.visible)return;
+    p.position.set(O.x+d.v.x*tt2,O.y+d.v.y*tt2-1.2*tt2*tt2,O.z+d.v.z*tt2);
+    p.scale.setScalar(d.s*(1-ex*.65));p.rotation.set(d.sp.x*ex,d.sp.y*ex,d.sp.z*ex)});
+  const fo=Math.max(0,1-Math.abs(q2-.5)/.035);
+  fl.style.opacity=(fo*.9).toFixed(3);boomLight.position.copy(O);boomLight.intensity=fo*12;
+  setTxt(q2>=.5?'BOOM.':ph>0?'SSSSsssss...':'Creeper approaching...');
+
+  /* zombie + enderman horde */
+  const u=cl((y-(a3-vh*.7))/(h3+vh*.7)),mz=-54+u*14,sw=Math.sin(t*5);
+  const zx=sx?-5:-1.8,exx=sx?-1.9:1.9;
+  zombie.visible=ender.visible=ep.visible=y>a3-vh*1.2&&y<a4+vh*.3;
+  zombie.position.set(zx,-2.7,mz);zombie.rotation.y=Math.sin(t*.8)*.35+.25;
+  zombie.userData.legs.forEach((l,i)=>l.rotation.x=(i?sw:-sw)*.6);
+  zombie.userData.arms.forEach((a,i)=>a.rotation.x=-PI/2+Math.sin(t*5+i)*.07);
+  const tp=(t%3.2)<.2;
+  ender.position.set(exx+(tp?(R()-.5)*.9:0),-2.9,mz-2.5);ender.rotation.y=-Math.sin(t*.7)*.3;
+  ender.userData.legs.forEach((l,i)=>l.rotation.x=(i?sw:-sw)*.45);
+  ender.userData.arms.forEach((a,i)=>a.rotation.x=(i?-sw:sw)*.35);
+  ep.position.set(ender.position.x,-2.9,ender.position.z);
+  eps.forEach((m,i)=>{m.position.set(Math.sin(i*12.9+t*1.3)*1.7,((t*.7+i*.37)%1)*6,Math.cos(i*7.1+t)*.9);m.rotation.set(t+i,t*1.3,0)});
+
+  ren.render(scene,cam);
+}
+resize();frame();
+})();
+</script>
+</body>
+</html>
