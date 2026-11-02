@@ -19,7 +19,7 @@ section{position:relative;z-index:2}
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;gap:26px}
 .tag{font-family:'Press Start 2P',monospace;font-size:.62rem;color:var(--g);letter-spacing:.08em;text-shadow:0 0 12px var(--g)}
 h1{font-family:'Press Start 2P',monospace;font-weight:400;font-size:clamp(1.3rem,7.4vw,6.4rem);line-height:1.3;white-space:nowrap;color:#fff;text-shadow:3px 3px 0 var(--r),6px 6px 0 #7a001c,0 0 34px rgba(255,0,60,.7)}
-h1 span{color:var(--r);text-shadow:3px 3px 0 #fff3,6px 6px 0 #4a0010,0 0 44px var(--r);animation:fl 3.2s infinite}
+h1 .red{color:var(--r);text-shadow:3px 3px 0 #fff3,6px 6px 0 #4a0010,0 0 44px var(--r);animation:fl 3.2s infinite}
 @keyframes fl{0%,92%,100%{opacity:1}94%{opacity:.35}96%{opacity:1}98%{opacity:.5}}
 .sub{max-width:560px;color:#b9b9c6;font-size:1.05rem}
 .ip{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;padding:12px 16px;background:rgba(0,0,0,.55);border:2px solid var(--g);box-shadow:0 0 22px rgba(0,255,102,.35),inset 0 0 14px rgba(0,255,102,.12)}
@@ -56,19 +56,34 @@ h1 span{color:var(--r);text-shadow:3px 3px 0 #fff3,6px 6px 0 #4a0010,0 0 44px va
 footer{text-align:center;padding:40px 20px 70px;display:flex;flex-direction:column;align-items:center;gap:18px;color:#7c7c8a;font-size:.8rem}
 #toast{position:fixed;left:50%;bottom:32px;transform:translate(-50%,140px);z-index:60;font-family:'Press Start 2P',monospace;font-size:.7rem;padding:14px 20px;background:var(--g);color:#02210e;box-shadow:0 0 24px var(--g),4px 4px 0 #006b2b;transition:transform .3s cubic-bezier(.2,1.4,.4,1)}
 #toast.on{transform:translate(-50%,0)}
-@media(max-width:800px){.stick{align-items:flex-end;padding:0 4vw 5vh}.glass{padding:22px}}
-@media(prefers-reduced-motion:reduce){.hint,h1 span,.card3d{animation:none}}
+.players,.gal{max-width:1100px;margin:auto;padding:8vh 6vw 4vh}
+.head{text-align:center;margin-bottom:34px}
+.ttl{font-family:'Press Start 2P',monospace;font-weight:400;font-size:clamp(1.1rem,5vw,2.6rem);color:#fff;margin-top:10px;text-shadow:3px 3px 0 var(--r),0 0 30px rgba(255,0,60,.6)}
+.plist{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:34px}
+.card3d.b{transform:rotateY(12deg) rotateX(5deg);animation-delay:-1.5s}
+.pl img{max-height:38vh}
+.stack{max-width:860px;margin:0 auto;padding-bottom:10vh}
+.slot{position:sticky;top:14vh;height:min(60vh,520px);margin-bottom:16vh}
+.sc{position:relative;height:100%;transform-origin:50% 0;border-radius:10px;overflow:hidden;border:2px solid var(--r);box-shadow:0 0 30px rgba(255,0,60,.5),0 20px 60px rgba(0,0,0,.7);background:#0b0b10;will-change:transform,filter}
+.slot:nth-child(2) .sc{border-color:var(--g);box-shadow:0 0 30px rgba(0,255,102,.45),0 20px 60px rgba(0,0,0,.7)}
+.sc img{width:100%;height:100%;object-fit:cover;display:block}
+.cap{position:absolute;left:12px;bottom:12px;font-family:'Press Start 2P',monospace;font-size:.6rem;padding:8px 10px;background:rgba(0,0,0,.65);color:var(--g);text-shadow:0 0 8px var(--g)}
+@media(max-width:800px){.slot{margin-bottom:12vh}.players,.gal{padding-top:6vh}.plist{gap:26px}}
+#xp{position:fixed;left:0;top:0;height:6px;width:0;background:var(--g);box-shadow:0 0 12px var(--g);z-index:70}
+.ch{display:inline-block}
+@media(max-width:800px){.stick{align-items:flex-end;padding:0 4vw 5vh}.glass{padding:20px}.glass h2{font-size:.85rem}.glass p{font-size:.92rem}h1{white-space:normal;font-size:11.5vw}h1 .red{display:block}.btn{min-height:48px;padding:14px 20px}.ip{width:100%;max-width:420px}.hero{gap:20px}.show{padding-top:10vh;gap:28px}.card3d img{max-height:42vh}}
+@media(prefers-reduced-motion:reduce){.hint,h1 .red,.card3d{animation:none}}
 </style>
 </head>
 <body>
 <canvas id="bg"></canvas>
 <div class="vig"></div>
-<div id="flash"></div>
+<div id="flash"></div><div id="xp"></div>
 <div id="toast" role="status">Copied!</div>
 
 <section class="hero" id="s1">
   <div class="tag rev">MINECRAFT SURVIVAL SERVER</div>
-  <h1 class="rev">NO <span>CHEATERS</span></h1>
+  <h1 class="rev">NO <span class="red">CHEATERS</span></h1>
   <p class="sub rev">Play fair or get blown up. One world, one rule, and everyone is watching.</p>
   <div class="ip rev">
     <code>NOCHEATERS-Ly999n.aternos.me</code>
@@ -120,6 +135,27 @@ footer{text-align:center;padding:40px 20px 70px;display:flex;flex-direction:colu
   </div>
 </section>
 
+<section class="players" id="s5">
+  <div class="head rev"><div class="tag">ON THE SERVER</div><h2 class="ttl">PLAYERS</h2></div>
+  <div class="plist">
+    <div class="tilt rev"><div class="card3d pl">
+      <img src="https://imgs.search.brave.com/BDPIeQy2gFskoJSfTSQxxN_J5fvWQz0wQGqOra5mDy0/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/cG5nbWFydC5jb20v/ZmlsZXMvMjMvRHJl/YW0tU2tpbi1QTkcu/cG5n" alt="Edwinfr skin" loading="lazy" referrerpolicy="no-referrer">
+      <div class="role">PLAYER 01</div><div class="nm">Edwinfr</div></div></div>
+    <div class="tilt rev"><div class="card3d pl b">
+      <img src="https://imgs.search.brave.com/JU9JX9lu7YPac6biaI1Or-_oPv-eAAUJAMj8xPnkksM/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zLm5h/bWVtYy5jb20vM2Qv/c2tpbi9ib2R5LnBu/Zz9pZD1kZjllNGMz/MDhlMzJmMTJlJm1v/ZGVsPXNsaW0md2lk/dGg9MjU2JmhlaWdo/dD0yNTY" alt="Erasmus Invictus skin" loading="lazy" referrerpolicy="no-referrer">
+      <div class="role">PLAYER 02</div><div class="nm">Erasmus Invictus</div></div></div>
+  </div>
+</section>
+
+<section class="gal" id="s6">
+  <div class="head rev"><div class="tag">SCREENSHOTS</div><h2 class="ttl">GALLERY</h2></div>
+  <div class="stack">
+    <div class="slot"><div class="sc"><img src="https://plain-apac-prod-public.komododecks.com/202611/02/RFyL47jUjbi1BiXHNOR8/image.jpg" alt="Gallery image 1" loading="lazy"><div class="cap">01 / 03</div></div></div>
+    <div class="slot"><div class="sc"><img src="https://plain-apac-prod-public.komododecks.com/202611/02/V9n7DxWFM4gdEdoq8oSG/image.jpg" alt="Gallery image 2" loading="lazy"><div class="cap">02 / 03</div></div></div>
+    <div class="slot"><div class="sc"><img src="https://plain-apac-prod-public.komododecks.com/202611/02/725jIhRP5qEnpAPaw5DD/image.jpg" alt="Gallery image 3" loading="lazy"><div class="cap">03 / 03</div></div></div>
+  </div>
+</section>
+
 <footer>
   <div class="ip"><code>NOCHEATERS-Ly999n.aternos.me</code><button class="btn copy" type="button">COPY IP</button></div>
   <div>Not affiliated with Mojang or Microsoft.</div>
@@ -132,6 +168,7 @@ footer{text-align:center;padding:40px 20px 70px;display:flex;flex-direction:colu
 (()=>{
 const T=THREE,U=.1,R=Math.random,cl=x=>Math.min(1,Math.max(0,x)),PI=Math.PI;
 const wide=()=>innerWidth>800;
+const M=innerWidth<=800||/Mobi|Android/i.test(navigator.userAgent);
 
 /* ---------- copy IP + toast ---------- */
 const toast=document.getElementById('toast');let tt;
@@ -156,19 +193,36 @@ document.querySelectorAll('.tilt').forEach(el=>{
 
 /* ---------- GSAP reveals ---------- */
 gsap.registerPlugin(ScrollTrigger);
+(function sp(el){[...el.childNodes].forEach(n=>{if(n.nodeType===3){const f=document.createDocumentFragment();[...n.textContent].forEach(c=>{const q=document.createElement('span');q.className='ch';q.textContent=c===' '?'\u00a0':c;f.appendChild(q)});n.replaceWith(f)}else sp(n)})})(document.querySelector('h1'));
+gsap.from('.ch',{y:-160,rotation:()=>gsap.utils.random(-60,60),opacity:0,duration:1.1,stagger:.05,ease:'bounce.out',delay:.2});
 gsap.utils.toArray('.rev').forEach((el,i)=>gsap.from(el,{y:60,opacity:0,duration:1,delay:i<4?i*.12:0,ease:'power3.out',
   scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none reverse'}}));
 gsap.to('.hint',{opacity:0,scrollTrigger:{trigger:'#s1',start:'top top',end:'25% top',scrub:true}});
 
 /* ---------- Three.js setup ---------- */
 const cv=document.getElementById('bg');
-const ren=new T.WebGLRenderer({canvas:cv,antialias:true,alpha:false});
-ren.setPixelRatio(Math.min(devicePixelRatio,2));ren.setClearColor(0x070709);
+const ren=new T.WebGLRenderer({canvas:cv,antialias:!M,alpha:false});
+ren.setPixelRatio(Math.min(devicePixelRatio,M?1.5:2));ren.setClearColor(0x070709);
 const scene=new T.Scene();scene.fog=new T.FogExp2(0x070709,.017);
 const cam=new T.PerspectiveCamera(60,1,.1,200);
 scene.add(new T.AmbientLight(0x9090b0,.85));
 const dl=new T.DirectionalLight(0xffffff,.9);dl.position.set(4,8,6);scene.add(dl);
 const camLight=new T.PointLight(0xff003c,1.2,30);scene.add(camLight);
+
+/* ---------- animated shader background (pixelated lava/nebula) ---------- */
+const bgu={t:{value:0},s:{value:0},f:{value:0},k:{value:0},r:{value:new T.Vector2(1,1)},px:{value:4}};
+const bgq=new T.Mesh(new T.PlaneGeometry(2,2),new T.ShaderMaterial({uniforms:bgu,depthTest:false,depthWrite:false,
+  vertexShader:'void main(){gl_Position=vec4(position.xy,.9999,1.);}',
+  fragmentShader:(M?'#define O 3\n':'#define O 4\n')+`uniform float t,s,f,k,px;uniform vec2 r;
+float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+float n(vec2 p){vec2 i=floor(p),u=fract(p);u=u*u*(3.-2.*u);return mix(mix(h(i),h(i+vec2(1,0)),u.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),u.x),u.y);}
+float fbm(vec2 p){float a=.5,v=0.;for(int i=0;i<O;i++){v+=a*n(p);p*=2.03;a*=.5;}return v;}
+void main(){vec2 uv=floor(gl_FragCoord.xy/px)*px/r;vec2 p=(uv-.5)*vec2(r.x/r.y,1.)*3.;
+float q=fbm(p+vec2(t*.05,s*3.));float w=fbm(p*1.5+q*2.+vec2(-t*.08,t*.04));
+vec3 c=mix(vec3(.027,.027,.036),vec3(.6,0.,.14),smoothstep(.35,.85,w)*.6);
+c+=vec3(0.,.9,.35)*smoothstep(.6,1.,fbm(p*2.-q*3.+t*.1+s*5.))*.24*mix(.3,1.,k);
+c+=vec3(1.)*f*.6;gl_FragColor=vec4(c,1.);}`}));
+bgq.frustumCulled=false;bgq.renderOrder=-10;scene.add(bgq);
 
 /* ---------- pixel texture helpers ---------- */
 function tex(w,h,f){const c=document.createElement('canvas');c.width=w;c.height=h;f(c.getContext('2d'),w,h);
@@ -204,14 +258,14 @@ const portalA=portal(-9),portalB=portal(-66);
 
 /* ---------- floating blocks + stars ---------- */
 const blocks=[];const bg=new T.BoxGeometry(1,1,1);
-for(let i=0;i<46;i++){
+for(let i=0;i<(M?22:46);i++){
   const m=new T.Mesh(bg,i%3?grassMats:obMat);
   const side=R()<.5?-1:1;
   m.position.set(side*(4.5+R()*9),(R()-.5)*12,8-R()*76);
   m.scale.setScalar(.6+R()*1.1);m.rotation.set(R()*PI,R()*PI,0);
   m.userData={s:(R()-.5)*.8,ph:R()*7,y:m.position.y};scene.add(m);blocks.push(m);
 }
-{const n=700,a=new Float32Array(n*3);for(let i=0;i<n;i++){a[i*3]=(R()-.5)*70;a[i*3+1]=(R()-.5)*34;a[i*3+2]=14-R()*90}
+{const n=M?350:700,a=new Float32Array(n*3);for(let i=0;i<n;i++){a[i*3]=(R()-.5)*70;a[i*3+1]=(R()-.5)*34;a[i*3+2]=14-R()*90}
  const g=new T.BufferGeometry();g.setAttribute('position',new T.BufferAttribute(a,3));
  scene.add(new T.Points(g,new T.PointsMaterial({color:0xff4466,size:.09,transparent:true,opacity:.7})))}
 
@@ -231,7 +285,7 @@ const creeper=makeCreeper();
 /* explosion particles */
 const pm=['#3fa535','#4cc23f','#2d7a28','#1a5a1a','#111111','#6b6b6b','#ffffff'].map(c=>new T.MeshLambertMaterial({color:c,emissive:new T.Color(c).multiplyScalar(.25)}));
 const pg=new T.BoxGeometry(.3,.3,.3),parts=[];
-for(let i=0;i<150;i++){
+for(let i=0;i<(M?80:150);i++){
   const m=new T.Mesh(pg,pm[(R()*pm.length)|0]);
   const d=new T.Vector3(R()-.5,R()-.35,R()-.2).normalize().multiplyScalar(3+R()*8);
   m.userData={v:d,s:.5+R()*1.6,sp:new T.Vector3(R()*9,R()*9,R()*9)};
@@ -265,22 +319,47 @@ const ender=makeEnder();
 const ep=new T.Group(),epm=new T.MeshBasicMaterial({color:0xb000ff}),epg=new T.BoxGeometry(.14,.14,.14),eps=[];
 for(let i=0;i<40;i++){const m=new T.Mesh(epg,epm);ep.add(m);eps.push(m)}scene.add(ep);
 
+/* ---------- Skeleton, Spider, Pig ---------- */
+function makeSkel(){const g=new T.Group(),s=L(skin([205,205,200],34)),
+F=L(skin([205,205,200],34,x=>pix(x,'#222',[[1,3,2,2],[5,3,2,2],[3,5,2,1],[2,6,4,1]]))),
+bn=L(skin([185,185,180],30)),bw=L(skin([110,75,40],20));
+g.add(B(8,8,8,[s,s,s,s,F,s],0,28,0),B(8,12,4,bn,0,18,0),B(1,16,3,bw,5,20,8));
+const arms=[-5,5].map(x=>{const p=P(2,12,2,s,x,22,0);p.rotation.x=-PI/2;g.add(p);return p});
+const legs=[-2,2].map(x=>{const p=P(2,12,2,s,x,12,0);g.add(p);return p});
+g.userData={arms,legs};g.scale.setScalar(1.7);g.visible=false;scene.add(g);return g}
+function makeSpider(){const g=new T.Group(),D=L(skin([38,32,32],16)),
+F=skin([38,32,32],16,x=>pix(x,'#e00',[[1,2,2,1],[5,2,2,1],[2,4,1,1],[5,4,1,1]])),
+f=new T.MeshLambertMaterial({map:F,emissive:0x660000,emissiveMap:F});
+g.add(B(8,8,8,[D,D,D,D,f,D],0,6,10),B(6,6,6,D,0,6,2),B(10,8,12,D,0,6,-7));
+const legs=[];for(const s of[-1,1])for(let i=0;i<4;i++){const p=new T.Group();p.position.set(s*3*U,6*U,(4-i*3)*U);p.add(B(14,2,2,D,s*7,0,0));p.userData={s,i};g.add(p);legs.push(p)}
+g.userData={legs};g.scale.setScalar(1.6);g.visible=false;scene.add(g);return g}
+function makePig(){const g=new T.Group(),pm=L(skin([240,150,150],18)),
+F=L(skin([240,150,150],18,x=>{pix(x,'#222',[[1,3,1,1],[6,3,1,1]]);pix(x,'#e88',[[2,5,4,3]]);pix(x,'#a44',[[3,6,1,1],[4,6,1,1]])}));
+g.add(B(8,8,8,[pm,pm,pm,pm,F,pm],0,12,12),B(10,8,16,pm,0,10,0));
+const legs=[[-3,5],[3,5],[-3,-5],[3,-5]].map(([x,z])=>{const p=P(4,6,4,pm,x,6,z);g.add(p);return p});
+g.userData={legs};g.scale.setScalar(2);g.visible=false;scene.add(g);return g}
+const skel=makeSkel(),spid=makeSpider(),spid2=makeSpider(),pig=makePig(),pig2=makePig();
+const aS=(s,t)=>s.userData.legs.forEach(l=>{const d=l.userData;l.rotation.z=-d.s*.8;l.rotation.y=-d.s*(d.i-1.5)*.4+Math.sin(t*14+d.i*1.7+(d.s>0?PI:0))*.25});
+const aP=(p,t)=>p.userData.legs.forEach((l,i)=>l.rotation.x=Math.sin(t*8+(i%3?PI:0))*.6);
+
 /* ---------- scroll geometry ---------- */
-let a2,h2,a3,h3,a4,Ky=[],Kz=[8,-12,-12,-32,-32,-52];
+const slots=[...document.querySelectorAll(".slot")];
+let maxY=1,a2,h2,a3,h3,a4,Ky=[],Kz=[8,-12,-12,-32,-32,-52];
 function measure(){
   const vh=innerHeight,s=id=>document.getElementById(id);
   a2=s('s2').offsetTop;h2=s('s2').offsetHeight-vh;a3=s('s3').offsetTop;h3=s('s3').offsetHeight-vh;a4=s('s4').offsetTop;
-  Ky=[0,a2,a2+h2,a3,a3+h3,a4];
+  Ky=[0,a2,a2+h2,a3,a3+h3,a4];maxY=Math.max(1,document.documentElement.scrollHeight-vh);slots.forEach((e,i)=>e.style.top=(vh*.14+i*(M?22:30))+"px");
 }
 function camZ(y){for(let i=1;i<Ky.length;i++)if(y<=Ky[i]){
   const u=cl((y-Ky[i-1])/((Ky[i]-Ky[i-1])||1)),e=u*u*(3-2*u);return Kz[i-1]+(Kz[i]-Kz[i-1])*e}return Kz[5]}
-function resize(){ren.setSize(innerWidth,innerHeight,false);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();measure();ScrollTrigger.refresh()}
+function resize(){ren.setSize(innerWidth,innerHeight,false);ren.getDrawingBufferSize(bgu.r.value);bgu.px.value=4*ren.getPixelRatio();cam.fov=wide()?60:72;cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();measure();ScrollTrigger.refresh()}
 addEventListener('resize',resize);
 let mx=0,my=0;addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=.5-e.clientY/innerHeight});
+addEventListener('deviceorientation',e=>{if(e.gamma!=null&&!wide()){mx=Math.max(-.5,Math.min(.5,e.gamma/60));my=Math.max(-.5,Math.min(.5,-(e.beta-50)/60))}});
 
 /* ---------- main loop ---------- */
 const clk=new T.Clock(),hiss=document.getElementById('hiss'),fl=document.getElementById('flash');
-let y=scrollY,ty=scrollY,lastTxt='';
+let y=scrollY,ty=scrollY,lastTxt='',fo=0;const xp=document.getElementById('xp');
 addEventListener('scroll',()=>ty=scrollY,{passive:true});
 const setTxt=s=>{if(s!==lastTxt){hiss.textContent=s;lastTxt=s}};
 function frame(){
@@ -288,7 +367,7 @@ function frame(){
   const t=clk.getElapsedTime(),vh=innerHeight,sx=wide()?1:0;
   y+=(ty-y)*.09;
   const z=camZ(y);
-  cam.position.set(mx*.7,.3+my*.4,z);cam.lookAt(mx*.9,my*.5+(sx?0:-1.2),z-10);
+  cam.position.set(mx*.7+(R()-.5)*fo*.6,.3+my*.4+(R()-.5)*fo*.6,z);cam.fov=(wide()?60:72)+fo*9;cam.updateProjectionMatrix();cam.lookAt(mx*.9,my*.5+(sx?0:-1.2),z-10);
   camLight.position.set(0,2,z+3);
 
   portalA.userData.sm.uniforms.t.value=portalB.userData.sm.uniforms.t.value=t;
@@ -312,7 +391,7 @@ function frame(){
   parts.forEach(p=>{const d=p.userData;p.visible=ex>0;if(!p.visible)return;
     p.position.set(O.x+d.v.x*tt2,O.y+d.v.y*tt2-1.2*tt2*tt2,O.z+d.v.z*tt2);
     p.scale.setScalar(d.s*(1-ex*.65));p.rotation.set(d.sp.x*ex,d.sp.y*ex,d.sp.z*ex)});
-  const fo=Math.max(0,1-Math.abs(q2-.5)/.035);
+  fo=Math.max(0,1-Math.abs(q2-.5)/.035);
   fl.style.opacity=(fo*.9).toFixed(3);boomLight.position.copy(O);boomLight.intensity=fo*12;
   setTxt(q2>=.5?'BOOM.':ph>0?'SSSSsssss...':'Creeper approaching...');
 
@@ -330,6 +409,22 @@ function frame(){
   ep.position.set(ender.position.x,-2.9,ender.position.z);
   eps.forEach((m,i)=>{m.position.set(Math.sin(i*12.9+t*1.3)*1.7,((t*.7+i*.37)%1)*6,Math.cos(i*7.1+t)*.9);m.rotation.set(t+i,t*1.3,0)});
 
+  const par=y>a4-vh*.5,cross=y>a3-vh*.6&&!par,c1=cl((y-(a3-vh*.5))/(h3+vh*.5));
+  spid.visible=pig.visible=cross;
+  spid.position.set(-12+c1*24,-3,-46);spid.rotation.y=PI/2;
+  pig.position.set(12-c1*24,-3+Math.abs(Math.sin(t*6))*.5,-42);pig.rotation.y=-PI/2;
+  skel.visible=spid2.visible=pig2.visible=par;
+  skel.position.set(sx?-6.5:-2,-3.3,-60);skel.rotation.y=.3+Math.sin(t)*.2;
+  skel.userData.legs.forEach((l,i)=>l.rotation.x=Math.sin(t*2+i*PI)*.15);
+  skel.userData.arms.forEach((a,i)=>a.rotation.x=-PI/2+Math.sin(t*2+i)*.08);
+  spid2.position.set(sx?6.5:2,-3,-60);spid2.rotation.y=-.3;
+  pig2.position.set(sx?1.4:0,-3+Math.abs(Math.sin(t*4))*.6,-57);pig2.rotation.y=Math.sin(t*1.3)*.5;
+  [spid,spid2].forEach(q=>aS(q,t));[pig,pig2].forEach(q=>aP(q,t));
+  slots.forEach((e,i)=>{let a=0;for(let j=i+1;j<slots.length;j++)a+=cl((vh-slots[j].getBoundingClientRect().top)/(vh-(vh*.14+j*(M?22:30))));
+    e.firstElementChild.style.transform=`perspective(1200px) translateZ(${-a*70}px) rotateX(${a*4}deg) scale(${1-a*.05})`;
+    e.firstElementChild.style.filter=`brightness(${1-a*.22})${M?'':` blur(${a*1.2}px)`}`});
+  bgu.t.value=t;bgu.s.value=cl(y/maxY);bgu.f.value=fo;bgu.k.value=cl(1-Math.abs(q2-.5)*2);
+  xp.style.width=cl(y/maxY)*100+'%';
   ren.render(scene,cam);
 }
 resize();frame();
