@@ -3,715 +3,239 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NO CHEATERS — Minecraft Server</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<title>NOCHEATERS • Christmas Edition Minecraft Server</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
 <style>
+:root{--red:#e62e2e;--green:#2fbf4f;--gold:#ffd24a;--ice:#bfeaff;--bg:#06101f;--ink:#f4fbff}
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--r:#ff003c;--g:#00ff66;--bg:#070709}
-html{background:var(--bg)}
-body{font-family:Inter,system-ui,sans-serif;color:#e8e8ee;overflow-x:hidden;line-height:1.6}
-#bg{position:fixed;inset:0;width:100%;height:100%;z-index:-1;display:block}
-.vig{position:fixed;inset:0;pointer-events:none;z-index:1;background:radial-gradient(ellipse at center,transparent 45%,rgba(0,0,0,.75))}
-#flash{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:50}
-#pflash{position:fixed;inset:0;opacity:0;pointer-events:none;z-index:51;background:radial-gradient(circle at center,#fff 0,#e3b8ff 30%,#8a2be2 70%,#3a0a6e 100%)}
-section{position:relative;z-index:2}
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;gap:26px}
-.tag{font-family:'Press Start 2P',monospace;font-size:.62rem;color:var(--g);letter-spacing:.08em;text-shadow:0 0 12px var(--g)}
-h1{font-family:'Press Start 2P',monospace;font-weight:400;font-size:clamp(1.3rem,7.4vw,6.4rem);line-height:1.3;white-space:nowrap;color:#fff;text-shadow:3px 3px 0 var(--r),6px 6px 0 #7a001c,0 0 34px rgba(255,0,60,.7)}
-h1 .red{color:var(--r);text-shadow:3px 3px 0 #fff3,6px 6px 0 #4a0010,0 0 44px var(--r);animation:fl 3.2s infinite}
-@keyframes fl{0%,92%,100%{opacity:1}94%{opacity:.35}96%{opacity:1}98%{opacity:.5}}
-.sub{max-width:560px;color:#b9b9c6;font-size:1.05rem}
-.ip{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;padding:12px 16px;background:rgba(0,0,0,.55);border:2px solid var(--g);box-shadow:0 0 22px rgba(0,255,102,.35),inset 0 0 14px rgba(0,255,102,.12)}
-.ip code{font-family:VT323,monospace;font-size:clamp(1.2rem,3.6vw,1.9rem);color:var(--g);word-break:break-all;text-shadow:0 0 10px var(--g)}
-.btn{font-family:'Press Start 2P',monospace;font-size:.68rem;padding:14px 18px;background:var(--g);color:#02210e;border:0;cursor:pointer;text-decoration:none;display:inline-block;box-shadow:4px 4px 0 #006b2b;transition:transform .08s,box-shadow .08s}
-.btn:hover{filter:brightness(1.15)}
-.btn:active{transform:translate(4px,4px);box-shadow:0 0 0 #006b2b}
-.btn:focus-visible,.dev a:focus-visible{outline:3px solid #fff;outline-offset:3px}
-.hint{font-family:'Press Start 2P',monospace;font-size:.6rem;color:#8a8a99;animation:bob 1.6s infinite}
-@keyframes bob{50%{transform:translateY(8px)}}
-.tall2{height:260vh}.tall3{height:200vh}
-.stick{position:sticky;top:0;height:100vh;display:flex;align-items:center;padding:0 6vw}
-.right{justify-content:flex-end}
-.glass{max-width:520px;padding:32px;border-radius:6px;background:rgba(14,14,20,.6);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.12);box-shadow:0 0 44px rgba(255,0,60,.14),inset 0 0 0 1px rgba(0,255,102,.05)}
-.glass h2{font-family:'Press Start 2P',monospace;font-weight:400;font-size:clamp(.9rem,2.3vw,1.35rem);line-height:1.7;color:#fff;text-shadow:2px 2px 0 var(--r);margin:12px 0 16px}
-.glass p{color:#c3c3cf;margin-bottom:14px}
-.glass ul{list-style:none;display:grid;gap:8px;margin-bottom:6px}
-.glass li{padding-left:22px;position:relative;color:#dcdce6}
-.glass li:before{content:"";position:absolute;left:0;top:.5em;width:10px;height:10px;background:var(--g);box-shadow:0 0 8px var(--g)}
-#hiss{font-family:VT323,monospace;font-size:1.7rem;color:var(--r);text-shadow:0 0 12px var(--r);min-height:2rem}
-.show{max-width:1100px;margin:auto;padding:14vh 6vw 6vh;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;align-items:center}
-.tilt{perspective:1000px}
-.card3d{transition:transform .15s ease-out;transform:rotateY(-12deg) rotateX(5deg);transform-style:preserve-3d;border-radius:8px;padding:22px;text-align:center;background:linear-gradient(160deg,rgba(255,0,60,.2),rgba(0,255,102,.1) 70%),rgba(10,10,14,.72);border:2px solid var(--r);box-shadow:0 0 30px var(--r),0 0 80px rgba(255,0,60,.35),inset 0 0 30px rgba(255,0,60,.2);animation:glow 3s infinite alternate}
-@keyframes glow{to{border-color:var(--g);box-shadow:0 0 40px var(--g),0 0 100px rgba(0,255,102,.35),inset 0 0 30px rgba(0,255,102,.2)}}
-.card3d img{max-width:100%;max-height:50vh;display:block;margin:0 auto 14px;image-rendering:pixelated;filter:drop-shadow(0 0 18px rgba(255,0,60,.85));transform:translateZ(60px)}
-.card3d .role{font-family:'Press Start 2P',monospace;font-size:.6rem;color:var(--g);text-shadow:0 0 10px var(--g);transform:translateZ(40px)}
-.card3d .nm{font-family:'Press Start 2P',monospace;font-size:clamp(.9rem,2.4vw,1.25rem);color:#fff;margin-top:12px;text-shadow:2px 2px 0 var(--r);transform:translateZ(50px)}
-.dev{text-align:center;padding:34px 26px;border-radius:8px;background:rgba(10,10,14,.7);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:2px solid var(--g);box-shadow:0 0 30px rgba(0,255,102,.4),0 0 80px rgba(0,255,102,.15),inset 0 0 26px rgba(0,255,102,.1)}
-.dev .ico{font-family:'Press Start 2P',monospace;font-size:2.2rem;color:var(--g);text-shadow:0 0 18px var(--g);margin-bottom:18px}
-.dev .nm{font-family:'Press Start 2P',monospace;font-size:clamp(.9rem,2.4vw,1.25rem);color:#fff;margin:10px 0 14px;text-shadow:2px 2px 0 var(--r)}
-.dev p{color:#c3c3cf;margin-bottom:22px}
-.dev a{font-family:'Press Start 2P',monospace;font-size:.66rem;display:inline-block;padding:15px 20px;color:#fff;text-decoration:none;background:var(--r);box-shadow:0 0 22px var(--r),0 0 50px rgba(255,0,60,.5),4px 4px 0 #7a001c;transition:transform .12s,box-shadow .12s}
-.dev a:hover{transform:translate(-2px,-2px);box-shadow:0 0 30px var(--r),0 0 70px rgba(255,0,60,.7),6px 6px 0 #7a001c}
-footer{position:relative;z-index:2;text-align:center;padding:90px 20px 70px;display:flex;flex-direction:column;align-items:center;gap:18px;color:#a4a4b2;font-size:.8rem;background:linear-gradient(to bottom,transparent,rgba(7,7,9,.88) 45%)}
-#toast{position:fixed;left:50%;bottom:32px;transform:translate(-50%,140px);z-index:60;font-family:'Press Start 2P',monospace;font-size:.7rem;padding:14px 20px;background:var(--g);color:#02210e;box-shadow:0 0 24px var(--g),4px 4px 0 #006b2b;transition:transform .3s cubic-bezier(.2,1.4,.4,1)}
-#toast.on{transform:translate(-50%,0)}
-.players,.gal{max-width:1100px;margin:auto;padding:8vh 6vw 4vh}
-.head{text-align:center;margin-bottom:34px}
-.ttl{font-family:'Press Start 2P',monospace;font-weight:400;font-size:clamp(1.1rem,5vw,2.6rem);color:#fff;margin-top:10px;text-shadow:3px 3px 0 var(--r),0 0 30px rgba(255,0,60,.6)}
-.plist{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:34px}
-.card3d.b{transform:rotateY(12deg) rotateX(5deg);animation-delay:-1.5s}
-.pl img{max-height:38vh}
-.stack{max-width:860px;margin:0 auto;padding-bottom:10vh}
-.slot{position:sticky;top:14vh;height:min(60vh,520px);margin-bottom:16vh}
-.sc{position:relative;height:100%;transform-origin:50% 0;border-radius:10px;overflow:hidden;border:2px solid var(--r);box-shadow:0 0 30px rgba(255,0,60,.5),0 20px 60px rgba(0,0,0,.7);background:#0b0b10;will-change:transform,filter}
-.slot:nth-child(2) .sc{border-color:var(--g);box-shadow:0 0 30px rgba(0,255,102,.45),0 20px 60px rgba(0,0,0,.7)}
-.sc img{width:100%;height:100%;object-fit:cover;display:block}
-.cap{position:absolute;left:12px;bottom:12px;font-family:'Press Start 2P',monospace;font-size:.6rem;padding:8px 10px;background:rgba(0,0,0,.65);color:var(--g);text-shadow:0 0 8px var(--g)}
-.tall4{height:620vh}
-.vwrap{position:absolute;inset:0;display:flex;align-items:center;padding:0 6vw;opacity:0;pointer-events:none}
-.vwrap.r{justify-content:flex-end}
-.vwrap .glass{pointer-events:none;will-change:transform}
-.vwrap.on .glass{pointer-events:auto}
-.vwrap .btn{margin-top:6px}
-@media(max-width:800px){.slot{margin-bottom:12vh}.players,.gal{padding-top:6vh}.plist{gap:26px}}
-#xp{position:fixed;left:0;top:0;height:6px;width:0;background:var(--g);box-shadow:0 0 12px var(--g);z-index:70}
-.ch{display:inline-block}
-@media(max-width:800px){.stick{align-items:flex-end;padding:0 4vw 5vh}.glass{padding:20px}.glass h2{font-size:.85rem}.glass p{font-size:.92rem}h1{white-space:normal;font-size:11.5vw}h1 .red{display:block}.btn{min-height:48px;padding:14px 20px}.ip{width:100%;max-width:420px}.hero{gap:20px}.show{padding-top:10vh;gap:28px}.card3d img{max-height:42vh}.vwrap{align-items:flex-end;padding:0 4vw 5vh}}
-@media(prefers-reduced-motion:reduce){.hint,h1 .red,.card3d{animation:none}}
+html{scroll-behavior:auto}
+body{background:var(--bg);color:var(--ink);font-family:'VT323',monospace;font-size:22px;overflow-x:hidden}
+#bg{position:fixed;inset:0;z-index:0}
+.px{font-family:'Press Start 2P',monospace}
+section{position:relative;z-index:2;min-height:100vh;padding:12vh 6vw;display:flex;flex-direction:column;justify-content:center}
+nav{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:14px 5vw;background:linear-gradient(#06101fcc,transparent)}
+nav b{font-family:'Press Start 2P';font-size:12px;color:var(--gold)}
+nav a{color:var(--ink);text-decoration:none;margin-left:22px;font-size:20px}
+nav a:hover{color:var(--gold)}
+#hero{align-items:center;text-align:center}
+.tag{font-family:'Press Start 2P';font-size:11px;color:var(--gold);letter-spacing:3px;margin-bottom:22px}
+h1{font-family:'Press Start 2P';font-size:clamp(28px,8vw,96px);line-height:1.15;text-shadow:4px 4px 0 #7a0f0f,8px 8px 0 #0008}
+h1 span{display:inline-block;color:#fff}
+h1 span:nth-child(odd){color:var(--red)}
+.sub{margin:26px 0;font-size:clamp(22px,3vw,32px);color:var(--ice)}
+.btn{display:inline-block;font-family:'Press Start 2P';font-size:12px;padding:16px 22px;background:var(--green);color:#fff;border:0;cursor:pointer;box-shadow:inset -4px -4px 0 #1b7a30,inset 4px 4px 0 #6ee38a,0 6px 0 #0a3d17;text-decoration:none;transition:transform .1s}
+.btn:hover{transform:translateY(3px)}
+.btn.red{background:var(--red);box-shadow:inset -4px -4px 0 #8c1515,inset 4px 4px 0 #ff7b7b,0 6px 0 #4a0a0a}
+.scroll{position:absolute;bottom:4vh;left:50%;transform:translateX(-50%);font-family:'Press Start 2P';font-size:9px;color:var(--ice);animation:b 1.4s infinite}
+@keyframes b{50%{transform:translate(-50%,10px)}}
+h2{font-family:'Press Start 2P';font-size:clamp(18px,3.4vw,40px);margin-bottom:34px;color:var(--gold);text-shadow:3px 3px 0 #000}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+.card{background:#0a1a33dd;border:4px solid #fff3;padding:26px;backdrop-filter:blur(6px);transform-style:preserve-3d}
+.card h3{font-family:'Press Start 2P';font-size:12px;color:var(--green);margin-bottom:14px;line-height:1.6}
+.card p{color:#d6ecff}
+.ip{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;background:#000a;border:4px dashed var(--gold);padding:20px;margin-bottom:18px}
+.ip small{font-family:'Press Start 2P';font-size:10px;color:var(--gold);display:block;margin-bottom:8px}
+.ip code{font-size:clamp(20px,3vw,30px);word-break:break-all}
+#gal{padding:0;display:block;min-height:auto;overflow:hidden}
+#gal .head{padding:12vh 6vw 4vh}
+.track{display:flex;gap:4vw;padding:0 6vw;width:max-content;align-items:center;height:68vh}
+.shot{width:min(62vw,720px);height:100%;position:relative;border:6px solid #fff;box-shadow:12px 12px 0 #000a;background:#111;overflow:hidden;flex:none}
+.shot img{width:112%;height:100%;object-fit:cover;display:block}
+.shot em{position:absolute;left:0;bottom:0;background:var(--red);font-family:'Press Start 2P';font-style:normal;font-size:11px;padding:10px 14px}
+#ent{text-align:center}
+#ent p{max-width:640px;margin:0 auto;color:var(--ice)}
+footer{position:relative;z-index:2;text-align:center;padding:14vh 6vw 8vh;background:linear-gradient(transparent,#000c)}
+footer .px{font-size:11px;line-height:2.2}
+footer a{color:var(--gold)}
+.toast{position:fixed;bottom:30px;left:50%;transform:translate(-50%,120px);background:var(--green);font-family:'Press Start 2P';font-size:11px;padding:14px 18px;z-index:99;transition:.3s}
+.toast.on{transform:translate(-50%,0)}
+.bar{position:fixed;top:0;left:0;height:5px;background:linear-gradient(90deg,var(--red),var(--gold),var(--green));z-index:20;width:0}
+@media(max-width:700px){nav a{display:none}.shot{width:84vw}}
 </style>
 </head>
 <body>
+<div class="bar" id="bar"></div>
 <canvas id="bg"></canvas>
-<div class="vig"></div>
-<div id="flash"></div><div id="pflash"></div><div id="xp"></div>
-<div id="toast" role="status">Copied!</div>
+<nav><b>NOCHEATERS</b><div><a href="#about">About</a><a href="#join">Join</a><a href="#gal">World</a><a href="#credits">Credits</a></div></nav>
 
-<section class="hero" id="s1">
-  <div class="tag rev">MINECRAFT SURVIVAL SERVER</div>
-  <h1 class="rev">NO <span class="red">CHEATERS</span></h1>
-  <p class="sub rev">Play fair or get blown up. One world, one rule, and everyone is watching.</p>
-  <div class="ip rev">
-    <code>NOCHEATERS-Ly999n.aternos.me</code>
-    <button class="btn copy" type="button">COPY IP</button>
-  </div>
-  <div class="hint">SCROLL DOWN</div>
+<section id="hero">
+  <div class="tag">❄ CHRISTMAS EDITION ❄</div>
+  <h1 id="title">NOCHEATERS</h1>
+  <p class="sub">Survive. Build. Celebrate. No hacks, just snow.</p>
+  <a class="btn" href="#join">JOIN THE SERVER</a>
+  <div class="scroll">SCROLL ▼</div>
 </section>
 
-<section class="tall2" id="s2">
-  <div class="stick">
-    <div class="glass rev">
-      <div class="tag">RULE #1</div>
-      <h2>HACK ONCE.<br>GET BLOWN UP.</h2>
-      <p>X-ray, fly, kill aura, auto-clickers: if you cheat, you leave. Scroll on and watch what happens to a Creeper that gets too close.</p>
-      <div id="hiss">Creeper approaching...</div>
-    </div>
+<section id="about">
+  <h2>WHY NOCHEATERS?</h2>
+  <div class="grid">
+    <div class="card"><h3>🎄 FAIR PLAY</h3><p>Legit survival only. Everyone earns their gifts the hard way.</p></div>
+    <div class="card"><h3>⛏ JAVA + BEDROCK</h3><p>Same address for both editions. Bring your friends on any device.</p></div>
+    <div class="card"><h3>🎁 FESTIVE WORLD</h3><p>A snowy winter map with builds, lights and surprises around every corner.</p></div>
   </div>
 </section>
 
-<section class="tall3" id="s3">
-  <div class="stick right">
-    <div class="glass rev">
-      <div class="tag">NIGHT FALLS</div>
-      <h2>THE HORDE<br>IS WATCHING</h2>
-      <p>Zombies at the door and Endermen behind you. Out here the mobs are the only thing you need to fear, not other players.</p>
-      <ul>
-        <li>Fair play, no hacked clients</li>
-        <li>Admin-moderated world</li>
-        <li>Join with one copied address</li>
-      </ul>
-    </div>
+<section id="join">
+  <h2>HOW TO JOIN</h2>
+  <div class="ip"><div><small>JAVA IP</small><code>NOCHEATERS-Ly999n.aternos.me:63675</code></div><button class="btn" data-c="NOCHEATERS-Ly999n.aternos.me:63675">COPY</button></div>
+  <div class="ip"><div><small>BEDROCK IP</small><code>NOCHEATERS-Ly999n.aternos.me:63675</code></div><button class="btn" data-c="NOCHEATERS-Ly999n.aternos.me:63675">COPY</button></div>
+  <div class="ip"><div><small>PORT</small><code>63675</code></div><button class="btn red" data-c="63675">COPY</button></div>
+  <p style="color:var(--ice)">Bedrock: Servers → Add Server → paste the address, port 63675. Server may need to be started on Aternos first.</p>
+</section>
+
+<section id="gal">
+  <div class="head"><h2>OUR WORLD</h2><p style="color:var(--ice)">Keep scrolling. The snow goes on →</p></div>
+  <div class="track" id="track">
+    <div class="shot"><img src="https://files.catbox.moe/wnwr77.png" alt="World 1"><em>SPAWN</em></div>
+    <div class="shot"><img src="https://files.catbox.moe/n7f12h.png" alt="World 2"><em>BUILDS</em></div>
+    <div class="shot"><img src="https://files.catbox.moe/1ojcpc.png" alt="World 3"><em>WINTER</em></div>
+    <div class="shot"><img src="https://files.catbox.moe/48w600.png" alt="World 4"><em>ADVENTURE</em></div>
   </div>
 </section>
 
-<section class="show" id="s4">
-  <div class="tilt rev">
-    <div class="card3d">
-      <img src="https://p.novaskin.me/5230693791.png?class=thumbnail2x" alt="SIDE_GLORY Minecraft skin" referrerpolicy="no-referrer">
-      <div class="role">SERVER ADMIN</div>
-      <div class="nm">SIDE_GLORY</div>
-    </div>
-  </div>
-  <div class="dev rev">
-    <div class="ico">&lt;/&gt;</div>
-    <div class="tag">DEVELOPER</div>
-    <div class="nm">Namith RN</div>
-    <p>Designed and built this site with Three.js and GSAP.</p>
-    <a href="https://namithrn.vercel.app" target="_blank" rel="noopener noreferrer">VIEW PORTFOLIO</a>
-  </div>
+<section id="ent">
+  <h2>MEET THE MOBS</h2>
+  <p>Creepers in Santa hats, snow golems, pigs and Steve himself. They are all waiting in the snow. Just don't stand next to the green one.</p>
 </section>
 
-<section class="players" id="s5">
-  <div class="head rev"><div class="tag">ON THE SERVER</div><h2 class="ttl">PLAYERS</h2></div>
-  <div class="plist">
-    <div class="tilt rev"><div class="card3d pl">
-      <img src="https://imgs.search.brave.com/BDPIeQy2gFskoJSfTSQxxN_J5fvWQz0wQGqOra5mDy0/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/cG5nbWFydC5jb20v/ZmlsZXMvMjMvRHJl/YW0tU2tpbi1QTkcu/cG5n" alt="Edwinfr skin" loading="lazy" referrerpolicy="no-referrer">
-      <div class="role">PLAYER 01</div><div class="nm">Edwinfr</div></div></div>
-    <div class="tilt rev"><div class="card3d pl b">
-      <img src="https://imgs.search.brave.com/JU9JX9lu7YPac6biaI1Or-_oPv-eAAUJAMj8xPnkksM/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zLm5h/bWVtYy5jb20vM2Qv/c2tpbi9ib2R5LnBu/Zz9pZD1kZjllNGMz/MDhlMzJmMTJlJm1v/ZGVsPXNsaW0md2lk/dGg9MjU2JmhlaWdo/dD0yNTY" alt="Erasmus Invictus skin" loading="lazy" referrerpolicy="no-referrer">
-      <div class="role">PLAYER 02</div><div class="nm">Erasmus Invictus</div></div></div>
-  </div>
-</section>
-
-<section class="gal" id="s6">
-  <div class="head rev"><div class="tag">SCREENSHOTS</div><h2 class="ttl">GALLERY</h2></div>
-  <div class="stack">
-    <div class="slot"><div class="sc"><img src="https://plain-apac-prod-public.komododecks.com/202611/02/RFyL47jUjbi1BiXHNOR8/image.jpg" alt="Gallery image 1" loading="lazy"><div class="cap">01 / 03</div></div></div>
-    <div class="slot"><div class="sc"><img src="https://plain-apac-prod-public.komododecks.com/202611/02/V9n7DxWFM4gdEdoq8oSG/image.jpg" alt="Gallery image 2" loading="lazy"><div class="cap">02 / 03</div></div></div>
-    <div class="slot"><div class="sc"><img src="https://plain-apac-prod-public.komododecks.com/202611/02/725jIhRP5qEnpAPaw5DD/image.jpg" alt="Gallery image 3" loading="lazy"><div class="cap">03 / 03</div></div></div>
-  </div>
-</section>
-
-<section class="tall4" id="s7">
-  <div class="stick vs">
-    <div class="vwrap" data-a="0" data-b=".15"><div class="glass">
-      <div class="tag">NETHER PORTAL</div>
-      <h2>ONE LAST<br>PORTAL</h2>
-      <p>Keep scrolling. Step through and the portal drops you in the Overworld, right at the edge of a village.</p>
-    </div></div>
-    <div class="vwrap r" data-a=".27" data-b=".47"><div class="glass">
-      <div class="tag">OVERWORLD</div>
-      <h2>WELCOME TO<br>THE VILLAGE</h2>
-      <p>Farms, a well and villagers going about their day. Trade, build and stay as long as you like, as long as you play fair.</p>
-    </div></div>
-    <div class="vwrap" data-a=".5" data-b=".74"><div class="glass">
-      <div class="tag">RAID</div>
-      <h2>PILLAGERS ON<br>THE HORIZON</h2>
-      <p>Crossbows up and an ominous banner in the wind. The villagers panic as the raid marches in.</p>
-    </div></div>
-    <div class="vwrap r" data-a=".76" data-b="1.1"><div class="glass">
-      <div class="tag">HOLD THE LINE</div>
-      <h2>IRON GOLEMS<br>GUARD THE GATE</h2>
-      <p>This village has defenders. Copy the IP, join the server and help hold off the raid.</p>
-      <button class="btn copy" type="button">COPY IP</button>
-    </div></div>
-  </div>
-</section>
-
-<footer>
-  <div class="ip"><code>NOCHEATERS-Ly999n.aternos.me</code><button class="btn copy" type="button">COPY IP</button></div>
-  <div>Not affiliated with Mojang or Microsoft.</div>
+<footer id="credits">
+  <div class="px" style="font-size:16px;color:var(--gold);margin-bottom:24px">🎅 MERRY CHRISTMAS 🎄</div>
+  <div class="px">NOCHEATERS © 2026<br>Designed &amp; Developed by <a href="https://namithrn.vercel.app" target="_blank" rel="noopener">Namith RN</a><br><a href="https://github.com/NamithRN" target="_blank" rel="noopener">GitHub: NamithRN</a></div>
+  <p style="margin-top:22px;color:#9bb">Not affiliated with Mojang or Microsoft.</p>
 </footer>
+<div class="toast" id="toast">COPIED!</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <script>
-(()=>{
-const T=THREE,U=.1,R=Math.random,cl=x=>Math.min(1,Math.max(0,x)),PI=Math.PI;
-const wide=()=>innerWidth>800;
-const M=innerWidth<=800||/Mobi|Android/i.test(navigator.userAgent);
-
-/* ---------- copy IP + toast ---------- */
-const toast=document.getElementById('toast');let tt;
-document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{
-  const ip='NOCHEATERS-Ly999n.aternos.me';
-  try{await navigator.clipboard.writeText(ip)}catch(e){
-    const a=document.createElement('textarea');a.value=ip;document.body.appendChild(a);a.select();
-    try{document.execCommand('copy')}catch(_){}a.remove();
-  }
-  toast.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove('on'),1800);
-}));
-
-/* ---------- 3D tilt cards ---------- */
-document.querySelectorAll('.tilt').forEach(el=>{
-  const c=el.firstElementChild;
-  const mv=e=>{const r=el.getBoundingClientRect(),p=e.touches?e.touches[0]:e;
-    const x=(p.clientX-r.left)/r.width-.5,y=(p.clientY-r.top)/r.height-.5;
-    c.style.transform=`rotateY(${x*30}deg) rotateX(${-y*30}deg) scale(1.04)`};
-  el.addEventListener('mousemove',mv);el.addEventListener('touchmove',mv,{passive:true});
-  ['mouseleave','touchend'].forEach(ev=>el.addEventListener(ev,()=>c.style.transform=''));
+// ---------- helpers ----------
+const $=s=>document.querySelector(s);
+const t=$('#title');t.innerHTML=[...t.textContent].map(c=>`<span>${c}</span>`).join('');
+$('#toast');
+document.querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>{
+  const v=b.dataset.c;
+  (navigator.clipboard?navigator.clipboard.writeText(v):Promise.reject()).catch(()=>{const a=document.createElement('textarea');a.value=v;document.body.appendChild(a);a.select();document.execCommand('copy');a.remove()});
+  const x=$('#toast');x.classList.add('on');setTimeout(()=>x.classList.remove('on'),1400);
 });
 
-/* ---------- GSAP reveals ---------- */
+// ---------- three scene ----------
+const R=new THREE.WebGLRenderer({canvas:$('#bg'),antialias:true});
+R.setPixelRatio(Math.min(devicePixelRatio,2));
+const S=new THREE.Scene();S.background=new THREE.Color(0x07142a);S.fog=new THREE.Fog(0x07142a,12,70);
+const C=new THREE.PerspectiveCamera(60,1,.1,200);
+S.add(new THREE.AmbientLight(0x9fb8ff,.7));
+const sun=new THREE.DirectionalLight(0xffffff,.9);sun.position.set(6,12,8);S.add(sun);
+const warm=new THREE.PointLight(0xffa040,1.4,30);S.add(warm);
+
+const M=(c)=>new THREE.MeshLambertMaterial({color:c,flatShading:true});
+const box=(w,h,d,c,x=0,y=0,z=0)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),M(c));m.position.set(x,y,z);return m};
+
+// ground
+const gnd=new THREE.Group();
+for(let x=-14;x<=14;x++)for(let z=-80;z<=10;z++){
+  if(Math.random()<.5||Math.abs(x)>3){const h=Math.random()<.15?.3:0;
+  const b=box(1,1,1,Math.random()<.5?0xffffff:0xe6f3ff,x,-.5+h-(Math.abs(x)>3?Math.random()*.3:0),z);gnd.add(b)}}
+S.add(gnd);
+
+// pine trees
+function tree(x,z){const g=new THREE.Group();
+  g.add(box(.6,1.2,.6,0x5a3b1f,0,.6,0));
+  [[2.2,1.6],[1.7,2.4],[1.2,3.2],[.7,3.9]].forEach(([w,y],i)=>g.add(box(w,.8,w,i%2?0x1f7a35:0x2a9a45,0,y,0)));
+  g.add(box(.35,.35,.35,0xffd24a,0,4.5,0));
+  [[.9,2.2],[-.7,3],[.4,3.6]].forEach(([o,y])=>{const l=box(.2,.2,.2,[0xff3333,0xffd24a,0x33aaff][Math.floor(Math.random()*3)],o,y,.7);g.add(l)});
+  g.position.set(x,0,z);return g}
+for(let z=6;z>-80;z-=3.2){S.add(tree(-5-Math.random()*8,z+Math.random()*2));S.add(tree(5+Math.random()*8,z+Math.random()*2))}
+
+// presents
+const gifts=[];
+for(let i=0;i<22;i++){const c=[0xe62e2e,0x2fbf4f,0xffd24a,0x3b82f6][i%4];const s=.5+Math.random()*.6;
+  const g=new THREE.Group();g.add(box(s,s,s,c));g.add(box(s*1.05,s*.2,s*.2,0xffffff,0,0,0));g.add(box(s*.2,s*1.05,s*.2,0xffffff));
+  g.position.set((Math.random()-.5)*8,s/2,-Math.random()*75);g.rotation.y=Math.random()*3;S.add(g);gifts.push(g)}
+
+// santa hat
+function hat(y,s=1){const g=new THREE.Group();g.add(box(1.0*s,.18*s,1.0*s,0xffffff,0,y,0));g.add(box(.8*s,.3*s,.8*s,0xe62e2e,0,y+.24*s,0));g.add(box(.5*s,.3*s,.5*s,0xe62e2e,0,y+.5*s,0));g.add(box(.2*s,.2*s,.2*s,0xffffff,.2*s,y+.72*s,0));return g}
+
+// entities
+function creeper(){const g=new THREE.Group();
+  g.add(box(.8,1.2,.5,0x3fb83f,0,1.2,0));
+  const h=new THREE.Group();h.add(box(.9,.9,.9,0x4fcf4f));
+  [[-.2,.12],[.2,.12]].forEach(([x,y])=>h.add(box(.2,.2,.05,0x000000,x,y,.46)));
+  h.add(box(.2,.3,.05,0,0,-.05,.46));h.add(box(.4,.2,.05,0,0,-.2,.46));
+  h.add(hat(.48,.9));h.position.y=2.3;g.add(h);g.userData.head=h;
+  [[-.2,.35],[.2,.35],[-.2,-.35],[.2,-.35]].forEach(([x,z])=>g.add(box(.35,.6,.35,0x3fb83f,x,.3,z*.7)));
+  return g}
+function golem(){const g=new THREE.Group();
+  g.add(box(1.1,1.1,1.1,0xffffff,0,.55,0));g.add(box(.85,.85,.85,0xf2f8ff,0,1.5,0));
+  const h=box(.7,.7,.7,0xe8821a,0,2.35,0);h.add(box(.14,.14,.05,0,-.17,.1,.36));h.add(box(.14,.14,.05,0,.17,.1,.36));h.add(box(.4,.1,.05,0,0,-.15,.36));g.add(h);g.userData.head=h;
+  g.add(box(.1,.9,.1,0x6b4423,-.8,1.7,0));g.add(box(.1,.9,.1,0x6b4423,.8,1.7,0));
+  g.add(box(.9,.2,.2,0xe62e2e,0,1.95,.4));return g}
+function pig(){const g=new THREE.Group();
+  g.add(box(1.2,.8,.8,0xf5a3b5,0,.8,0));
+  const h=box(.7,.7,.7,0xf5a3b5,.85,1.05,0);h.add(box(.2,.25,.4,0xe07a90,.4,-.1,0));g.add(h);h.add(hat(.4,.7));g.userData.head=h;
+  [[.4,.3],[.4,-.3],[-.4,.3],[-.4,-.3]].forEach(([x,z])=>g.add(box(.25,.45,.25,0xf5a3b5,x,.22,z)));return g}
+function steve(){const g=new THREE.Group();
+  g.add(box(.9,1.2,.5,0x1ca3c9,0,1.8,0));
+  const h=box(.9,.9,.9,0xd9a066,0,2.85,0);h.add(box(.9,.3,.95,0x4a2e14,0,.3,0));h.add(box(.2,.15,.05,0xffffff,-.2,0,.46));h.add(box(.2,.15,.05,0xffffff,.2,0,.46));h.add(hat(.55,.95));g.add(h);g.userData.head=h;
+  g.add(box(.4,1.2,.4,0xd9a066,-.65,1.8,0));g.add(box(.4,1.2,.4,0xd9a066,.65,1.8,0));
+  g.add(box(.4,1.2,.45,0x3a3fa8,-.22,.6,0));g.add(box(.4,1.2,.45,0x3a3fa8,.22,.6,0));return g}
+
+const ents=[[steve(),-2.6,-6],[creeper(),2.4,-15],[golem(),-2.6,-25],[pig(),2.6,-34],[creeper(),-2.6,-44],[steve(),2.6,-54],[golem(),2.6,-64]];
+ents.forEach(([e,x,z])=>{e.position.set(x,0,z);e.rotation.y=x<0?.5:-.5;S.add(e)});
+
+// snow
+const N=1600,pos=new Float32Array(N*3);
+for(let i=0;i<N;i++){pos[i*3]=(Math.random()-.5)*50;pos[i*3+1]=Math.random()*25;pos[i*3+2]=10-Math.random()*90}
+const sg=new THREE.BufferGeometry();sg.setAttribute('position',new THREE.BufferAttribute(pos,3));
+const snow=new THREE.Points(sg,new THREE.PointsMaterial({color:0xffffff,size:.16,transparent:true,opacity:.9}));S.add(snow);
+
+// stars
+const st=new Float32Array(600*3);for(let i=0;i<600;i++){st[i*3]=(Math.random()-.5)*160;st[i*3+1]=15+Math.random()*40;st[i*3+2]=-Math.random()*140}
+const sg2=new THREE.BufferGeometry();sg2.setAttribute('position',new THREE.BufferAttribute(st,3));
+S.add(new THREE.Points(sg2,new THREE.PointsMaterial({color:0xfff2b0,size:.35})));
+// moon
+const moon=box(4,4,1,0xfff6d0,18,22,-90);S.add(moon);
+
+function resize(){R.setSize(innerWidth,innerHeight);C.aspect=innerWidth/innerHeight;C.updateProjectionMatrix()}
+addEventListener('resize',resize);resize();
+
+let prog=0,mx=0,my=0;
+addEventListener('mousemove',e=>{mx=(e.clientX/innerWidth-.5);my=(e.clientY/innerHeight-.5)});
+const clock=new THREE.Clock();
+function loop(){
+  const tm=clock.getElapsedTime();
+  const z=12-prog*72;
+  C.position.set(Math.sin(prog*Math.PI*4)*1.6+mx*1.2,2.4+Math.sin(prog*9)*.25-my*.6,z);
+  C.lookAt(Math.sin(prog*Math.PI*4+.6)*1.6,2,z-10);
+  warm.position.set(C.position.x,4,C.position.z-3);
+  const p=sg.attributes.position.array;
+  for(let i=0;i<N;i++){p[i*3+1]-=.04+(i%5)*.006;p[i*3]+=Math.sin(tm+i)*.004;if(p[i*3+1]<0)p[i*3+1]=25}
+  sg.attributes.position.needsUpdate=true;
+  ents.forEach(([e],i)=>{e.position.y=Math.abs(Math.sin(tm*2+i))*.12;if(e.userData.head)e.userData.head.rotation.y=Math.sin(tm+i)*.5});
+  gifts.forEach((g,i)=>g.rotation.y+=.004*(i%2?1:-1));
+  R.render(S,C);requestAnimationFrame(loop)}
+loop();
+
+// ---------- scroll animations ----------
 gsap.registerPlugin(ScrollTrigger);
-(function sp(el){[...el.childNodes].forEach(n=>{if(n.nodeType===3){const f=document.createDocumentFragment();[...n.textContent].forEach(c=>{const q=document.createElement('span');q.className='ch';q.textContent=c===' '?'\u00a0':c;f.appendChild(q)});n.replaceWith(f)}else sp(n)})})(document.querySelector('h1'));
-gsap.from('.ch',{y:-160,rotation:()=>gsap.utils.random(-60,60),opacity:0,duration:1.1,stagger:.05,ease:'bounce.out',delay:.2});
-gsap.utils.toArray('.rev').forEach((el,i)=>gsap.from(el,{y:60,opacity:0,duration:1,delay:i<4?i*.12:0,ease:'power3.out',
-  scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none reverse'}}));
-gsap.to('.hint',{opacity:0,scrollTrigger:{trigger:'#s1',start:'top top',end:'25% top',scrub:true}});
-
-/* ---------- Three.js setup ---------- */
-const cv=document.getElementById('bg');
-const ren=new T.WebGLRenderer({canvas:cv,antialias:!M,alpha:false});
-ren.setPixelRatio(Math.min(devicePixelRatio,M?1.5:2));ren.setClearColor(0x070709);
-const scene=new T.Scene();scene.fog=new T.FogExp2(0x070709,.017);
-const cam=new T.PerspectiveCamera(60,1,.1,320);
-const amb=new T.AmbientLight(0x9090b0,.85);scene.add(amb);
-const dl=new T.DirectionalLight(0xffffff,.9);dl.position.set(4,8,6);scene.add(dl);
-const camLight=new T.PointLight(0xff003c,1.2,30);scene.add(camLight);
-
-/* ---------- animated shader background (pixelated lava/nebula -> Overworld sky) ---------- */
-const bgu={t:{value:0},s:{value:0},f:{value:0},k:{value:0},vv:{value:0},r:{value:new T.Vector2(1,1)},px:{value:4}};
-const bgq=new T.Mesh(new T.PlaneGeometry(2,2),new T.ShaderMaterial({uniforms:bgu,depthTest:false,depthWrite:false,
-  vertexShader:'void main(){gl_Position=vec4(position.xy,.9999,1.);}',
-  fragmentShader:(M?'#define O 3\n':'#define O 4\n')+`uniform float t,s,f,k,px,vv;uniform vec2 r;
-float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
-float n(vec2 p){vec2 i=floor(p),u=fract(p);u=u*u*(3.-2.*u);return mix(mix(h(i),h(i+vec2(1,0)),u.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),u.x),u.y);}
-float fbm(vec2 p){float a=.5,v=0.;for(int i=0;i<O;i++){v+=a*n(p);p*=2.03;a*=.5;}return v;}
-void main(){vec2 uv=floor(gl_FragCoord.xy/px)*px/r;vec2 p=(uv-.5)*vec2(r.x/r.y,1.)*3.;
-float q=fbm(p+vec2(t*.05,s*3.));float w=fbm(p*1.5+q*2.+vec2(-t*.08,t*.04));
-vec3 c=mix(vec3(.027,.027,.036),vec3(.6,0.,.14),smoothstep(.35,.85,w)*.6);
-c+=vec3(0.,.9,.35)*smoothstep(.6,1.,fbm(p*2.-q*3.+t*.1+s*5.))*.24*mix(.3,1.,k);
-if(vv>.001){
-  float yy=smoothstep(.45,1.,uv.y);
-  vec3 sk=mix(vec3(.7216,.8588,1.),vec3(.26,.5,.93),yy);
-  float cd=smoothstep(.56,.72,fbm(vec2(p.x*.9+t*.05,p.y*2.6)))*smoothstep(.55,.8,uv.y);
-  sk=mix(sk,vec3(1.),cd*.92);
-  vec2 sp=(uv-vec2(.78,.8))*vec2(r.x/r.y,1.);
-  sk+=vec3(1.,.93,.6)*step(max(abs(sp.x),abs(sp.y)),.05)*.9;
-  c=mix(c,sk,vv);
-}
-c+=vec3(1.)*f*.6;gl_FragColor=vec4(c,1.);}`}));
-bgq.frustumCulled=false;bgq.renderOrder=-10;scene.add(bgq);
-
-/* ---------- pixel texture helpers ---------- */
-function tex(w,h,f){const c=document.createElement('canvas');c.width=w;c.height=h;f(c.getContext('2d'),w,h);
-  const t=new T.CanvasTexture(c);t.magFilter=t.minFilter=T.NearestFilter;return t}
-function nz(x,w,h,b,v){for(let i=0;i<w;i++)for(let j=0;j<h;j++){const d=(R()-.5)*v;
-  x.fillStyle=`rgb(${b[0]+d|0},${b[1]+d|0},${b[2]+d|0})`;x.fillRect(i,j,1,1)}}
-const pix=(x,c,l)=>{x.fillStyle=c;l.forEach(([a,b,w=1,h=1])=>x.fillRect(a,b,w,h))};
-const skin=(b,v,f)=>tex(8,8,(x,w,h)=>{nz(x,w,h,b,v);f&&f(x)});
-const L=t=>new T.MeshLambertMaterial({map:t});
-const B=(w,h,d,m,x,y,z)=>{const o=new T.Mesh(new T.BoxGeometry(w*U,h*U,d*U),m);o.position.set(x*U,y*U,z*U);return o};
-const P=(w,h,d,m,x,y,z)=>{const p=new T.Group();p.position.set(x*U,y*U,z*U);p.add(B(w,h,d,m,0,-h/2,0));return p};
-
-/* ---------- block textures ---------- */
-const OB=tex(16,16,(x,w,h)=>{nz(x,w,h,[22,12,34],20);for(let i=0;i<16;i++)pix(x,'#3d1f63',[[R()*16|0,R()*16|0,2,1]])});
-const GT=tex(16,16,(x,w,h)=>nz(x,w,h,[96,170,56],36));
-const DT=tex(16,16,(x,w,h)=>{nz(x,w,h,[134,96,67],34);for(let i=0;i<6;i++)pix(x,'#6b4a33',[[R()*16|0,R()*16|0,1,1]])});
-const GS=tex(16,16,(x,w,h)=>{nz(x,w,h,[134,96,67],34);x.fillStyle='#5faa38';for(let i=0;i<16;i++)x.fillRect(i,0,1,3+(R()*2|0))});
-const obMat=L(OB),grassMats=[L(GS),L(GS),L(GT),L(DT),L(GS),L(GS)];
-
-/* ---------- Nether portal ---------- */
-function portal(z){
-  const g=new T.Group();
-  [[-1.5,-1],[-1.5,0],[-1.5,1],[1.5,-1],[1.5,0],[1.5,1],[-.5,-2],[.5,-2],[-.5,2],[.5,2]]
-    .forEach(([x,y])=>{const b=new T.Mesh(new T.BoxGeometry(1,1,1),obMat);b.position.set(x,y,0);g.add(b)});
-  const sm=new T.ShaderMaterial({transparent:true,side:T.DoubleSide,uniforms:{t:{value:0}},
-    vertexShader:'varying vec2 v;void main(){v=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
-    fragmentShader:'varying vec2 v;uniform float t;void main(){vec2 p=v*vec2(2.,3.);float a=sin(p.x*6.+t*2.)+sin(p.y*7.-t*3.)+sin((p.x+p.y)*5.+t*1.5)+sin(p.y*13.+p.x*4.+t*2.);a=a/4.*.5+.5;gl_FragColor=vec4(mix(vec3(.25,0.,.55),vec3(.85,.35,1.),a),.8);}'});
-  g.add(new T.Mesh(new T.PlaneGeometry(2,3),sm));
-  const pl=new T.PointLight(0xaa22ff,2.2,22);pl.position.z=2;g.add(pl);
-  g.scale.setScalar(1.8);g.position.set(0,0,z);g.userData.sm=sm;scene.add(g);return g;
-}
-const portalA=portal(-9),portalB=portal(-66);
-
-/* ---------- floating blocks + stars ---------- */
-const blocks=[];const bg=new T.BoxGeometry(1,1,1);
-for(let i=0;i<(M?22:46);i++){
-  const m=new T.Mesh(bg,i%3?grassMats:obMat);
-  const side=R()<.5?-1:1;
-  m.position.set(side*(4.5+R()*9),(R()-.5)*12,8-R()*76);
-  m.scale.setScalar(.6+R()*1.1);m.rotation.set(R()*PI,R()*PI,0);
-  m.userData={s:(R()-.5)*.8,ph:R()*7,y:m.position.y};scene.add(m);blocks.push(m);
-}
-let stars;
-{const n=M?350:700,a=new Float32Array(n*3);for(let i=0;i<n;i++){a[i*3]=(R()-.5)*70;a[i*3+1]=(R()-.5)*34;a[i*3+2]=14-R()*90}
- const g=new T.BufferGeometry();g.setAttribute('position',new T.BufferAttribute(a,3));
- stars=new T.Points(g,new T.PointsMaterial({color:0xff4466,size:.09,transparent:true,opacity:.7}));scene.add(stars)}
-
-/* ---------- Creeper ---------- */
-const flashMats=[];
-const CM=t=>{const m=L(t);flashMats.push(m);return m};
-function makeCreeper(){
-  const g=new T.Group(),G=skin([60,170,50],44),
-  F=skin([60,170,50],44,x=>pix(x,'#000',[[1,2,2,2],[5,2,2,2],[3,4,2,2],[2,5,1,3],[5,5,1,3]]));
-  const m=CM(G),h=[m,m,m,m,CM(F),m];
-  g.add(B(8,8,8,h,0,22,0),B(8,12,4,m,0,12,0));
-  const legs=[[-2,2],[2,2],[-2,-2],[2,-2]].map(([x,z])=>{const p=P(4,6,4,m,x,6,z);g.add(p);return p});
-  g.userData.legs=legs;scene.add(g);return g;
-}
-const creeper=makeCreeper();
-
-/* explosion particles */
-const pm=['#3fa535','#4cc23f','#2d7a28','#1a5a1a','#111111','#6b6b6b','#ffffff'].map(c=>new T.MeshLambertMaterial({color:c,emissive:new T.Color(c).multiplyScalar(.25)}));
-const pg=new T.BoxGeometry(.3,.3,.3),parts=[];
-for(let i=0;i<(M?80:150);i++){
-  const m=new T.Mesh(pg,pm[(R()*pm.length)|0]);
-  const d=new T.Vector3(R()-.5,R()-.35,R()-.2).normalize().multiplyScalar(3+R()*8);
-  m.userData={v:d,s:.5+R()*1.6,sp:new T.Vector3(R()*9,R()*9,R()*9)};
-  m.visible=false;scene.add(m);parts.push(m);
-}
-const boomLight=new T.PointLight(0xffffff,0,40);scene.add(boomLight);
-
-/* ---------- Zombie ---------- */
-function makeZombie(){
-  const g=new T.Group(),Z=skin([88,150,66],30),
-  F=skin([88,150,66],30,x=>{pix(x,'#1c1c5c',[[1,3,2,1],[5,3,2,1]]);pix(x,'#3c6a2c',[[3,4,2,1]]);pix(x,'#2a4a20',[[2,5,4,2]])});
-  const zm=L(Z),sh=L(skin([0,150,175],24)),pa=L(skin([50,50,140],20));
-  g.add(B(8,8,8,[zm,zm,zm,zm,L(F),zm],0,28,0),B(8,12,4,sh,0,18,0));
-  const arms=[-6,6].map(x=>{const p=P(4,12,4,zm,x,22,0);p.rotation.x=-PI/2;g.add(p);return p});
-  const legs=[-2,2].map(x=>{const p=P(4,12,4,pa,x,12,0);g.add(p);return p});
-  g.userData={arms,legs};g.scale.setScalar(1.7);scene.add(g);return g;
-}
-const zombie=makeZombie();
-
-/* ---------- Enderman ---------- */
-function makeEnder(){
-  const g=new T.Group(),dk=new T.MeshLambertMaterial({map:skin([30,22,38],12),emissive:0x120818}),
-  et=tex(8,8,x=>{x.fillStyle='#0e0a12';x.fillRect(0,0,8,8);pix(x,'#e100ff',[[0,4,3,1],[5,4,3,1]]);pix(x,'#ff9bff',[[0,5,3,1],[5,5,3,1]])}),
-  em=new T.MeshLambertMaterial({map:et,emissive:0xffffff,emissiveMap:et});
-  g.add(B(8,8,8,[dk,dk,dk,dk,em,dk],0,46,0),B(8,12,4,dk,0,36,0));
-  const legs=[-2,2].map(x=>{const p=P(2,30,2,dk,x,30,0);g.add(p);return p});
-  const arms=[-5,5].map(x=>{const p=P(2,30,2,dk,x,42,0);g.add(p);return p});
-  g.userData={legs,arms};g.scale.setScalar(1.15);scene.add(g);return g;
-}
-const ender=makeEnder();
-const ep=new T.Group(),epm=new T.MeshBasicMaterial({color:0xb000ff}),epg=new T.BoxGeometry(.14,.14,.14),eps=[];
-for(let i=0;i<40;i++){const m=new T.Mesh(epg,epm);ep.add(m);eps.push(m)}scene.add(ep);
-
-/* ---------- Skeleton, Spider, Pig ---------- */
-function makeSkel(){const g=new T.Group(),s=L(skin([205,205,200],34)),
-F=L(skin([205,205,200],34,x=>pix(x,'#222',[[1,3,2,2],[5,3,2,2],[3,5,2,1],[2,6,4,1]]))),
-bn=L(skin([185,185,180],30)),bw=L(skin([110,75,40],20));
-g.add(B(8,8,8,[s,s,s,s,F,s],0,28,0),B(8,12,4,bn,0,18,0),B(1,16,3,bw,5,20,8));
-const arms=[-5,5].map(x=>{const p=P(2,12,2,s,x,22,0);p.rotation.x=-PI/2;g.add(p);return p});
-const legs=[-2,2].map(x=>{const p=P(2,12,2,s,x,12,0);g.add(p);return p});
-g.userData={arms,legs};g.scale.setScalar(1.7);g.visible=false;scene.add(g);return g}
-function makeSpider(){const g=new T.Group(),D=L(skin([38,32,32],16)),
-F=skin([38,32,32],16,x=>pix(x,'#e00',[[1,2,2,1],[5,2,2,1],[2,4,1,1],[5,4,1,1]])),
-f=new T.MeshLambertMaterial({map:F,emissive:0x660000,emissiveMap:F});
-g.add(B(8,8,8,[D,D,D,D,f,D],0,6,10),B(6,6,6,D,0,6,2),B(10,8,12,D,0,6,-7));
-const legs=[];for(const s of[-1,1])for(let i=0;i<4;i++){const p=new T.Group();p.position.set(s*3*U,6*U,(4-i*3)*U);p.add(B(14,2,2,D,s*7,0,0));p.userData={s,i};g.add(p);legs.push(p)}
-g.userData={legs};g.scale.setScalar(1.6);g.visible=false;scene.add(g);return g}
-function makePig(){const g=new T.Group(),pm=L(skin([240,150,150],18)),
-F=L(skin([240,150,150],18,x=>{pix(x,'#222',[[1,3,1,1],[6,3,1,1]]);pix(x,'#e88',[[2,5,4,3]]);pix(x,'#a44',[[3,6,1,1],[4,6,1,1]])}));
-g.add(B(8,8,8,[pm,pm,pm,pm,F,pm],0,12,12),B(10,8,16,pm,0,10,0));
-const legs=[[-3,5],[3,5],[-3,-5],[3,-5]].map(([x,z])=>{const p=P(4,6,4,pm,x,6,z);g.add(p);return p});
-g.userData={legs};g.scale.setScalar(2);g.visible=false;scene.add(g);return g}
-const skel=makeSkel(),spid=makeSpider(),spid2=makeSpider(),pig=makePig(),pig2=makePig();
-const aS=(s,t)=>s.userData.legs.forEach(l=>{const d=l.userData;l.rotation.z=-d.s*.8;l.rotation.y=-d.s*(d.i-1.5)*.4+Math.sin(t*14+d.i*1.7+(d.s>0?PI:0))*.25});
-const aP=(p,t)=>p.userData.legs.forEach((l,i)=>l.rotation.x=Math.sin(t*8+(i%3?PI:0))*.6);
-
-/* =====================================================================
-   OVERWORLD VILLAGE (reached through the last Nether portal)
-   ===================================================================== */
-const BL=2.72,GY=-3.4,PC=.2;
-const VT={};
-VT.pl=tex(16,16,(x,w,h)=>{nz(x,w,h,[170,130,80],18);pix(x,'#7d5c30',[[0,3,16,1],[0,7,16,1],[0,11,16,1],[0,15,16,1],[5,0,1,3],[11,4,1,3],[3,8,1,3],[9,12,1,3]])});
-VT.cb=tex(16,16,(x,w,h)=>{nz(x,w,h,[128,128,128],46);pix(x,'#505050',[[0,5,16,1],[0,10,16,1],[7,0,1,5],[3,5,1,5],[11,5,1,5],[8,10,1,6],[2,10,1,6]])});
-VT.lg=tex(16,16,(x,w,h)=>{nz(x,w,h,[104,82,50],18);pix(x,'#4b3a22',[[2,0,1,16],[6,0,1,16],[10,0,1,16],[14,0,1,16]])});
-VT.lt=tex(16,16,(x,w,h)=>{nz(x,w,h,[170,135,85],14);pix(x,'#8a6a3a',[[2,2,12,1],[2,13,12,1],[2,2,1,12],[13,2,1,12],[5,5,6,1],[5,10,6,1],[5,5,1,6],[10,5,1,6]])});
-VT.rf=tex(16,16,(x,w,h)=>{nz(x,w,h,[74,50,28],14);pix(x,'#3a2812',[[0,3,16,1],[0,7,16,1],[0,11,16,1],[0,15,16,1]])});
-VT.br=tex(16,16,(x,w,h)=>{nz(x,w,h,[150,72,56],18);pix(x,'#cfc4b8',[[0,3,16,1],[0,7,16,1],[0,11,16,1],[0,15,16,1],[4,0,1,3],[12,4,1,3],[4,8,1,3],[12,12,1,3]])});
-VT.gl=tex(16,16,(x,w,h)=>{nz(x,w,h,[140,196,230],14);pix(x,'#4a3820',[[0,0,16,2],[0,14,16,2],[0,0,2,16],[14,0,2,16],[7,0,2,16],[0,7,16,2]]);pix(x,'#ffffff',[[3,3,2,1],[10,9,2,1]])});
-VT.dr=tex(16,16,(x,w,h)=>{nz(x,w,h,[110,78,40],12);pix(x,'#4a3216',[[0,0,16,1],[0,15,16,1],[0,0,1,16],[15,0,1,16],[7,0,2,16],[0,7,16,1]]);pix(x,'#d8d8d8',[[11,8,1,1]])});
-VT.gr=tex(16,16,(x,w,h)=>{nz(x,w,h,[98,168,60],28);pix(x,'#4c8a2c',[[2,3,1,1],[9,1,1,1],[5,9,1,1],[12,12,1,1],[14,6,1,1]])});
-VT.pt=tex(16,16,(x,w,h)=>{nz(x,w,h,[150,122,80],22);pix(x,'#6e5636',[[3,2,1,1],[10,5,1,1],[6,11,1,1],[13,13,1,1],[1,8,1,1]]);pix(x,'#b79a66',[[8,3,1,1],[2,12,1,1]])});
-VT.fm=tex(16,16,(x,w,h)=>{nz(x,w,h,[96,62,38],14);pix(x,'#3e2814',[[0,3,16,1],[0,7,16,1],[0,11,16,1],[0,15,16,1]])});
-VT.lf=tex(16,16,(x,w,h)=>{nz(x,w,h,[56,132,40],44);for(let i=0;i<14;i++)pix(x,'#2a6420',[[R()*16|0,R()*16|0,2,2]])});
-VT.hy=tex(16,16,(x,w,h)=>{nz(x,w,h,[200,168,58],20);pix(x,'#7a5a1a',[[0,3,16,1],[0,12,16,1]]);pix(x,'#e6cf70',[[4,0,1,16],[11,0,1,16]])});
-VT.wt=tex(16,16,(x,w,h)=>nz(x,w,h,[46,108,208],14));
-VT.cr=tex(16,16,x=>{[1,4,7,10,13].forEach((i,k)=>{pix(x,'#b89a2e',[[i,5+k%2,2,11-k%2]]);pix(x,'#e8cf5c',[[i,3+k%3,2,3]])})});
-VT.cg=tex(16,16,x=>{[1,4,7,10,13].forEach((i,k)=>{pix(x,'#3e8f2e',[[i,5+k%2,2,11-k%2]]);pix(x,'#76cf52',[[i,3+k%3,2,3]])})});
-VT.bn=tex(8,16,x=>{x.fillStyle='#2b7585';x.fillRect(0,0,8,16);pix(x,'#e8e8e8',[[1,2,6,2],[2,5,1,5],[5,5,1,5],[1,11,6,1]]);pix(x,'#173f4a',[[0,0,8,1],[0,15,8,1]])});
-
-const mcache={},gcache={},pcache={};
-function vm(n,rx,ry){const k=n+'|'+rx+'|'+ry;
-  if(!mcache[k]){const c=VT[n].clone();c.wrapS=c.wrapT=T.RepeatWrapping;c.repeat.set(rx,ry);c.needsUpdate=true;mcache[k]=new T.MeshLambertMaterial({map:c})}
-  return mcache[k]}
-const gbox=(w,h,d)=>{const k=w+'|'+h+'|'+d;return gcache[k]||(gcache[k]=new T.BoxGeometry(w*BL,h*BL,d*BL))};
-/* textured block: sizes in blocks, x/z = centre, y = bottom */
-function vbox(g,side,top,w,h,d,x,y,z){
-  const m=[vm(side,d,h),vm(side,d,h),vm(top,w,d),vm(top,w,d),vm(side,w,h),vm(side,w,h)];
-  const o=new T.Mesh(gbox(w,h,d),m);o.position.set(x*BL,(y+h/2)*BL,z*BL);g.add(o);return o}
-/* plain coloured block (bs=1 -> unlit, glowing) */
-function vplain(g,c,bs,w,h,d,x,y,z){
-  const k=c+(bs?'b':'l');
-  if(!pcache[k])pcache[k]=bs?new T.MeshBasicMaterial({color:c}):new T.MeshLambertMaterial({color:c});
-  const o=new T.Mesh(gbox(w,h,d),pcache[k]);o.position.set(x*BL,(y+h/2)*BL,z*BL);g.add(o);return o}
-const vtorch=(g,x,y,z)=>{vplain(g,0x5a3d1c,0,.12,.7,.12,x,y,z);vplain(g,0xffb03a,1,.24,.24,.24,x,y+.62,z)};
-
-const vill=new T.Group();vill.visible=false;scene.add(vill);
-
-/* ground + dirt path */
-{
-  const gm=new T.Mesh(new T.PlaneGeometry(200,220),vm('gr',200/BL,220/BL));
-  gm.rotation.x=-PI/2;gm.position.set(0,GY,-168);vill.add(gm);
-  const pc2=VT.pt.clone();pc2.wrapS=pc2.wrapT=T.RepeatWrapping;pc2.repeat.set(2,150/BL);pc2.needsUpdate=true;
-  const pm3=new T.MeshLambertMaterial({map:pc2,polygonOffset:true,polygonOffsetFactor:-4,polygonOffsetUnits:-4});
-  const pth=new T.Mesh(new T.PlaneGeometry(2*BL,150),pm3);
-  pth.rotation.x=-PI/2;pth.position.set(0,GY+.04,-142);vill.add(pth);
-}
-
-/* buildings and props */
-function house(side,z,W,D,v){
-  const g=new T.Group(),wt=v===2?'cb':'pl',rt=v===1?'br':'rf';
-  vbox(g,'cb','cb',W,1,D,0,0,0);
-  [[-1,-1],[1,-1],[-1,1],[1,1]].forEach(([a,b])=>vbox(g,'lg','lt',1,3,1,a*(W/2-.5),1,b*(D/2-.5)));
-  vbox(g,wt,wt,W-2,3,1,0,1,D/2-.5);
-  vbox(g,wt,wt,W-2,3,1,0,1,-(D/2-.5));
-  vbox(g,wt,wt,1,3,D-2,W/2-.5,1,0);
-  vbox(g,wt,wt,1,3,D-2,-(W/2-.5),1,0);
-  const wx=W>=7?2:1;
-  vbox(g,'dr','dr',1,2,.06,0,1,D/2+.03);
-  [-wx,wx].forEach(x=>vbox(g,'gl','gl',1,1,.06,x,2,D/2+.03));
-  vbox(g,'gl','gl',.06,1,1,W/2+.03,2,0);
-  vbox(g,'gl','gl',.06,1,1,-W/2-.03,2,0);
-  vbox(g,'cb','cb',1.4,1,.6,0,0,D/2+.3);
-  vbox(g,'cb','cb',1.4,.5,1.2,0,0,D/2+.6);
-  vtorch(g,.95,1.1,D/2+.06);
-  for(let l=0,dd=D+1;dd>=1;l++,dd-=2)vbox(g,rt,rt,W+1,1,dd,0,4+l,0);
-  if(v===1)vbox(g,'cb','cb',1,4,1,-(W/2-1.5),4,-(D/2-1.5));
-  g.position.set(side*(6.5+D*BL/2),GY,z);g.rotation.y=side<0?PI/2:-PI/2;vill.add(g);return g;
-}
-function well(x,z){
-  const g=new T.Group();
-  vbox(g,'cb','cb',3,1,1,0,0,1);vbox(g,'cb','cb',3,1,1,0,0,-1);
-  vbox(g,'cb','cb',1,1,1,1,0,0);vbox(g,'cb','cb',1,1,1,-1,0,0);
-  vbox(g,'wt','wt',1,.8,1,0,0,0);
-  [[-1,-1],[1,-1],[-1,1],[1,1]].forEach(([a,b])=>vbox(g,'lg','lt',.6,3,.6,a,1,b));
-  vbox(g,'rf','rf',3.6,.5,3.6,0,4,0);vbox(g,'rf','rf',2,.5,2,0,4.5,0);vbox(g,'rf','rf',.8,.5,.8,0,5,0);
-  g.position.set(x,GY,z);vill.add(g);return g;
-}
-function crops(g,cells,mt){
-  const geo=new T.PlaneGeometry(BL*.95,BL*.75);geo.translate(0,BL*.375,0);
-  [PI/4,-PI/4].forEach(a=>{
-    const im=new T.InstancedMesh(geo,mt,cells.length),d=new T.Object3D();
-    cells.forEach((c,i)=>{d.position.set(c[0],c[1],c[2]);d.rotation.set(0,a,0);d.updateMatrix();im.setMatrixAt(i,d.matrix)});
-    im.instanceMatrix.needsUpdate=true;im.frustumCulled=false;g.add(im)});
-}
-function farm(x,z,n,name){
-  const g=new T.Group(),cells=[];
-  vbox(g,'fm','fm',n,.15,n,0,0,0);
-  for(let i=0;i<n;i++)for(let j=0;j<n;j++)cells.push([(i-(n-1)/2)*BL,.15*BL,(j-(n-1)/2)*BL]);
-  crops(g,cells,new T.MeshLambertMaterial({map:VT[name],alphaTest:.5,side:T.DoubleSide}));
-  [[-1,-1],[1,-1],[-1,1],[1,1]].forEach(([a,b])=>vtorch(g,a*(n/2-.2),.15,b*(n/2-.2)));
-  g.position.set(x,GY,z);vill.add(g);return g;
-}
-function tree(x,z,s){
-  const g=new T.Group();
-  vbox(g,'lg','lt',1,4,1,0,0,0);
-  vbox(g,'lf','lf',5,2,5,0,3,0);vbox(g,'lf','lf',3,1,3,0,5,0);
-  g.scale.setScalar(s);g.position.set(x,GY,z);vill.add(g);return g;
-}
-function lamp(x,z){
-  const g=new T.Group();
-  vplain(g,0x5a3d1c,0,.3,3,.3,0,0,0);
-  vplain(g,0xffd37a,1,.8,.8,.8,0,3,0);
-  vplain(g,0x3a2a14,0,1,.2,1,0,3.8,0);
-  g.position.set(x,GY,z);vill.add(g);return g;
-}
-function hay(x,z,y){
-  const g=new T.Group();vbox(g,'hy','hy',1,1,1,0,y,0);
-  g.position.set(x,GY,z);vill.add(g);return g;
-}
-function outpost(x,z){
-  const g=new T.Group();
-  vbox(g,'cb','cb',5,4,5,0,0,0);
-  [[-2,-2],[2,-2],[-2,2],[2,2]].forEach(([a,b])=>{vbox(g,'lg','lt',1,6,1,a,4,b);vbox(g,'lg','lt',.6,3,.6,a,11,b)});
-  vbox(g,'pl','pl',7,1,7,0,10,0);
-  vbox(g,'lg','lt',7,.8,.5,0,11,3.25);vbox(g,'lg','lt',7,.8,.5,0,11,-3.25);
-  vbox(g,'lg','lt',.5,.8,6,3.25,11,0);vbox(g,'lg','lt',.5,.8,6,-3.25,11,0);
-  vbox(g,'rf','rf',6,.6,6,0,14,0);vbox(g,'rf','rf',4,.6,4,0,14.6,0);
-  vplain(g,0x3a2812,0,.2,5,.2,3.4,11,3.4);
-  const bn=new T.Mesh(gbox(.9,1.8,.1),L(VT.bn));bn.position.set(3.4*BL,13.3*BL,3.55*BL);g.add(bn);
-  g.position.set(x,GY,z);vill.add(g);return g;
-}
-
-[[-1,-84,5,5,0],[-1,-112,7,5,1],[-1,-140,5,4,2],[-1,-166,5,5,0],[1,-88,5,5,1],[1,-146,5,5,0],[1,-170,7,5,2]]
-  .forEach(([s,z,W,D,v])=>house(s,z,W,D,v));
-well(-9,-97);
-farm(14.7,-116,6,'cr');
-[[8.5,-131.5,0],[11.3,-131.5,0],[8.5,-131.5,1]].forEach(([x,z,y])=>hay(x,z,y));
-[[-3.6,-74],[3.6,-92],[-3.6,-104],[3.6,-128],[-3.6,-130],[3.6,-152],[-3.6,-158],[3.6,-176]].forEach(([x,z])=>lamp(x,z));
-[[-31,-76],[-34,-96],[-30,-114],[-33,-132],[-32,-150],[-35,-168],[-31,-186],
- [31,-84],[34,-104],[30,-122],[33,-140],[32,-158],[35,-176],[31,-194],
- [-14,-205],[15,-212],[-20,-225],[21,-222]].forEach(([x,z],i)=>tree(x,z,1+((i*37)%5)*.06));
-outpost(-9,-258);
-
-/* mobs */
-function makeVillager(robe,apron){
-  const g=new T.Group(),sk=[190,140,112],
-  s=L(skin(sk,18)),
-  F=L(skin(sk,18,x=>{pix(x,'#ffffff',[[1,3,2,2],[5,3,2,2]]);pix(x,'#3a8a3a',[[2,3,1,2],[5,3,1,2]]);pix(x,'#3b2a1a',[[0,2,8,1]])})),
-  r=L(skin(robe,22,apron?(x=>pix(x,apron,[[0,4,8,4]])):null));
-  g.add(B(8,10,8,[s,s,s,s,F,s],0,29,0),B(2,4,2,s,0,27,5),B(8,12,6,r,0,18,0),B(8,4,4,r,0,19,3.5));
-  const legs=[-2,2].map(x=>{const p=P(4,12,4,r,x,12,0);g.add(p);return p});
-  g.userData={legs};g.scale.setScalar(1.7);return g;
-}
-function makePillager(ban){
-  const g=new T.Group(),sk=[140,152,144],
-  s=L(skin(sk,16)),
-  F=L(skin(sk,16,x=>{pix(x,'#dcdcdc',[[1,3,3,1],[4,3,3,1]]);pix(x,'#202020',[[2,3,1,1],[5,3,1,1],[0,2,3,1],[5,2,3,1],[2,6,4,1]])})),
-  jk=L(skin([58,66,78],18,x=>pix(x,'#2a313c',[[0,0,1,8],[7,0,1,8],[3,0,2,8]]))),
-  pn=L(skin([84,64,48],14)),wd=L(skin([96,66,34],14)),dw=L(skin([52,36,20],10));
-  g.add(B(8,10,8,[s,s,s,s,F,s],0,29,0),B(2,4,2,s,0,27,5),B(8,12,6,jk,0,18,0),B(2,2,10,wd,0,21,8),B(14,2,2,dw,0,21,12));
-  const legs=[-2,2].map(x=>{const p=P(4,12,4,pn,x,12,0);g.add(p);return p});
-  [-4.5,4.5].forEach(x=>{const p=P(4,12,4,jk,x,24,0);p.rotation.x=-1.25;g.add(p)});
-  if(ban)g.add(B(1.6,48,1.6,dw,0,24,-6),B(11,18,1,L(VT.bn),0,36,-6.2));
-  g.userData={legs};g.scale.setScalar(1.7);return g;
-}
-function makeGolem(){
-  const g=new T.Group(),sk=[196,196,190],
-  bd=L(skin(sk,34,x=>pix(x,'#4f8f3f',[[1,1,1,4],[6,3,1,4],[3,6,3,1]]))),
-  bd2=L(skin([180,180,174],30)),
-  F=L(skin(sk,24,x=>{pix(x,'#e8e8e0',[[0,3,1,1],[3,3,1,1],[4,3,1,1],[7,3,1,1]]);pix(x,'#6a3a1a',[[1,3,2,1],[5,3,2,1]]);pix(x,'#3a3a3a',[[0,2,3,1],[5,2,3,1]])})),
-  nse=L(skin([150,112,82],20)),
-  arm=L(skin([186,186,180],30,x=>pix(x,'#4f8f3f',[[2,2,1,3]]))),
-  leg=L(skin([170,170,164],28));
-  g.add(B(18,12,11,bd,0,24,0),B(9,5,6,bd2,0,15.5,0),B(8,10,8,[bd2,bd2,bd2,bd2,F,bd2],0,35,-1),B(2,4,2,nse,0,33,4));
-  const arms=[-11,11].map(x=>{const p=P(4,30,6,arm,x,31,0);g.add(p);return p});
-  const legs=[-4,4].map(x=>{const p=P(6,13,5,leg,x,13,0);g.add(p);return p});
-  g.userData={arms,legs};g.scale.setScalar(1.7);return g;
-}
-
-const vlgs=[],pils=[];
-[[-4.3,-80,[120,84,52],0,.5],[4.7,-98,[236,234,226],0,-.6],[-4.5,-122,[104,60,112],0,.4],
- [4.8,-138,[62,62,66],'#8a8a90',-.3],[-4.4,-150,[150,104,60],0,.6],[4.6,-174.5,[120,84,52],0,-.5]]
-  .forEach(([x,z,r,ap,ry],i)=>{const m=makeVillager(r,ap);m.position.set(x,GY,z);m.rotation.y=ry;
-    m.userData.ry=ry;m.userData.ph=i*1.7;vill.add(m);vlgs.push(m)});
-const golA=makeGolem(),golB=makeGolem();
-golA.position.set(-3.8,GY,-117);golA.rotation.y=.45;
-golB.position.set(1.6,GY,-190);golB.rotation.y=PI;
-vill.add(golA,golB);
-[[-6,-232,0],[-2.4,-226,1],[1.8,-230,0],[5.2,-224,0],[8.6,-236,1]]
-  .forEach(([x,z,b],i)=>{const m=makePillager(b);m.position.set(x,GY,z);m.userData.zs=z;m.userData.ph=i*1.3;vill.add(m);pils.push(m)});
-const vp1=makePig(),vp2=makePig();
-vp1.position.set(9,GY,-101);vp2.position.set(12.5,GY,-104);
-vp1.userData.bx=9;vp2.userData.bx=12.5;
-vp1.visible=vp2.visible=true;vill.add(vp1,vp2);
-
-/* pre-compile village shaders so nothing hitches during the portal flash */
-try{vill.visible=true;ren.compile(scene,cam)}catch(e){}
-vill.visible=false;
-
-/* ---------- scroll geometry ---------- */
-const slots=[...document.querySelectorAll(".slot")];
-const caps=[...document.querySelectorAll('.vwrap')].map(e=>({e,g:e.firstElementChild,a:+e.dataset.a,b:+e.dataset.b,o:-1}));
-const vig=document.querySelector('.vig'),pfl=document.getElementById('pflash');
-const fogN=new T.Color(0x070709),fogD=new T.Color(0xB8DBFF),ambN=new T.Color(0x9090b0),ambD=new T.Color(0xe6efff),dlN=new T.Color(0xffffff),dlD=new T.Color(0xfff1d6);
-let maxY=1,a2,h2,a3,h3,a4,a7=1e9,h7=1,Ky=[],Kz=[8,-12,-12,-32,-32,-52];
-function measure(){
-  const vh=innerHeight,s=id=>document.getElementById(id);
-  a2=s('s2').offsetTop;h2=s('s2').offsetHeight-vh;a3=s('s3').offsetTop;h3=s('s3').offsetHeight-vh;a4=s('s4').offsetTop;
-  a7=s('s7').offsetTop;h7=Math.max(1,s('s7').offsetHeight-vh);
-  Ky=[0,a2,a2+h2,a3,a3+h3,a4];maxY=Math.max(1,document.documentElement.scrollHeight-vh);slots.forEach((e,i)=>e.style.top=(vh*.14+i*(M?22:30))+"px");
-}
-function camZ(y){for(let i=1;i<Ky.length;i++)if(y<=Ky[i]){
-  const u=cl((y-Ky[i-1])/((Ky[i]-Ky[i-1])||1)),e=u*u*(3-2*u);return Kz[i-1]+(Kz[i]-Kz[i-1])*e}return Kz[5]}
-/* inside the last section: approach portal B (z=-66), pass through it at progress PC, then walk the village */
-const vilZ=p=>p<PC?-52-14.2*p/PC:-66.2-112*(p-PC)/(1-PC);
-function resize(){ren.setSize(innerWidth,innerHeight,false);ren.getDrawingBufferSize(bgu.r.value);bgu.px.value=4*ren.getPixelRatio();cam.fov=wide()?60:72;cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();measure();ScrollTrigger.refresh()}
-addEventListener('resize',resize);
-addEventListener('load',()=>{measure();ScrollTrigger.refresh()});
-let mx=0,my=0;addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=.5-e.clientY/innerHeight});
-addEventListener('deviceorientation',e=>{if(e.gamma!=null&&!wide()){mx=Math.max(-.5,Math.min(.5,e.gamma/60));my=Math.max(-.5,Math.min(.5,-(e.beta-50)/60))}});
-
-/* ---------- main loop ---------- */
-const clk=new T.Clock(),hiss=document.getElementById('hiss'),fl=document.getElementById('flash');
-let y=scrollY,ty=scrollY,lastTxt='',fo=0;const xp=document.getElementById('xp');
-addEventListener('scroll',()=>ty=scrollY,{passive:true});
-const setTxt=s=>{if(s!==lastTxt){hiss.textContent=s;lastTxt=s}};
-function frame(){
-  requestAnimationFrame(frame);
-  const t=clk.getElapsedTime(),vh=innerHeight,sx=wide()?1:0;
-  y+=(ty-y)*.09;
-  /* p7 = progress through the portal/village section; vw = village blend; pf = purple teleport flash */
-  const p7=y>a7?cl((y-a7)/h7):0,vw=cl((p7-.18)/.04),pf=cl((.07-Math.abs(p7-PC))/.04),nvis=vw<.999;
-  let z=camZ(y);if(p7>0)z=vilZ(p7);
-  cam.position.set(mx*.7+(R()-.5)*fo*.6,.3+my*.4+(R()-.5)*fo*.6,z);cam.fov=(wide()?60:72)+fo*9+pf*12;cam.updateProjectionMatrix();cam.lookAt(mx*.9,my*.5+(sx?0:-1.2),z-10);
-  camLight.position.set(0,2,z+3);
-
-  portalA.userData.sm.uniforms.t.value=portalB.userData.sm.uniforms.t.value=t;
-  portalA.rotation.y=Math.sin(t*.4)*.15;portalB.rotation.y=Math.sin(t*.4+2)*.15;
-  blocks.forEach(b=>{b.visible=nvis;const d=b.userData;b.rotation.x+=d.s*.01;b.rotation.y+=d.s*.014;b.position.y=d.y+Math.sin(t+d.ph)*.5});
-  stars.visible=nvis;
-
-  /* creeper: swell, flash white, explode */
-  const q2=cl((y-a2)/h2),ph=cl(q2/.45),ex=cl((q2-.5)/.5);
-  const cx=sx?3:0,cy=-2.8,cz=-20;
-  creeper.visible=q2<.5;
-  if(creeper.visible){
-    creeper.scale.setScalar(2.2*(1+ph*.7));
-    creeper.position.set(cx+(ph>0?(R()-.5)*.12*ph:0),cy,cz);
-    creeper.rotation.y=-.35+Math.sin(t*.6)*.3;
-    const w=Math.sin(t*5)*.5*(1-ph);
-    creeper.userData.legs.forEach((l,i)=>l.rotation.x=(i%2?w:-w));
-    const on=ph>0&&Math.sin(ph*ph*90)>0;
-    flashMats.forEach(m=>m.emissive.setScalar(on?.95:0));
-  }
-  const O=new T.Vector3(cx,cy+3.2,cz),tt2=ex*3.4;
-  parts.forEach(p=>{const d=p.userData;p.visible=ex>0;if(!p.visible)return;
-    p.position.set(O.x+d.v.x*tt2,O.y+d.v.y*tt2-1.2*tt2*tt2,O.z+d.v.z*tt2);
-    p.scale.setScalar(d.s*(1-ex*.65));p.rotation.set(d.sp.x*ex,d.sp.y*ex,d.sp.z*ex)});
-  fo=Math.max(0,1-Math.abs(q2-.5)/.035);
-  fl.style.opacity=(fo*.9).toFixed(3);boomLight.position.copy(O);boomLight.intensity=fo*12;
-  setTxt(q2>=.5?'BOOM.':ph>0?'SSSSsssss...':'Creeper approaching...');
-
-  /* zombie + enderman horde */
-  const u=cl((y-(a3-vh*.7))/(h3+vh*.7)),mz=-54+u*14,sw=Math.sin(t*5);
-  const zx=sx?-5:-1.8,exx=sx?-1.9:1.9;
-  zombie.visible=ender.visible=ep.visible=y>a3-vh*1.2&&y<a4+vh*.3;
-  zombie.position.set(zx,-2.7,mz);zombie.rotation.y=Math.sin(t*.8)*.35+.25;
-  zombie.userData.legs.forEach((l,i)=>l.rotation.x=(i?sw:-sw)*.6);
-  zombie.userData.arms.forEach((a,i)=>a.rotation.x=-PI/2+Math.sin(t*5+i)*.07);
-  const tp=(t%3.2)<.2;
-  ender.position.set(exx+(tp?(R()-.5)*.9:0),-2.9,mz-2.5);ender.rotation.y=-Math.sin(t*.7)*.3;
-  ender.userData.legs.forEach((l,i)=>l.rotation.x=(i?sw:-sw)*.45);
-  ender.userData.arms.forEach((a,i)=>a.rotation.x=(i?-sw:sw)*.35);
-  ep.position.set(ender.position.x,-2.9,ender.position.z);
-  eps.forEach((m,i)=>{m.position.set(Math.sin(i*12.9+t*1.3)*1.7,((t*.7+i*.37)%1)*6,Math.cos(i*7.1+t)*.9);m.rotation.set(t+i,t*1.3,0)});
-
-  /* the parallax mobs near the last portal wander aside so the camera can fly through */
-  const par=y>a4-vh*.5,cross=y>a3-vh*.6&&!par,c1=cl((y-(a3-vh*.5))/(h3+vh*.5)),aw=cl(p7/.1);
-  spid.visible=pig.visible=cross;
-  spid.position.set(-12+c1*24,-3,-46);spid.rotation.y=PI/2;
-  pig.position.set(12-c1*24,-3+Math.abs(Math.sin(t*6))*.5,-42);pig.rotation.y=-PI/2;
-  skel.visible=spid2.visible=pig2.visible=par&&nvis;
-  skel.position.set((sx?-6.5:-2)-aw*9,-3.3,-60);skel.rotation.y=.3+Math.sin(t)*.2;
-  skel.userData.legs.forEach((l,i)=>l.rotation.x=Math.sin(t*2+i*PI)*.15);
-  skel.userData.arms.forEach((a,i)=>a.rotation.x=-PI/2+Math.sin(t*2+i)*.08);
-  spid2.position.set((sx?6.5:2)+aw*9,-3,-60);spid2.rotation.y=-.3;
-  pig2.position.set((sx?1.4:0)+aw*8,-3+Math.abs(Math.sin(t*4))*.6,-57);pig2.rotation.y=Math.sin(t*1.3)*.5;
-  [spid,spid2].forEach(q=>aS(q,t));[pig,pig2].forEach(q=>aP(q,t));
-  slots.forEach((e,i)=>{let a=0;for(let j=i+1;j<slots.length;j++)a+=cl((vh-slots[j].getBoundingClientRect().top)/(vh-(vh*.14+j*(M?22:30))));
-    e.firstElementChild.style.transform=`perspective(1200px) translateZ(${-a*70}px) rotateX(${a*4}deg) scale(${1-a*.05})`;
-    e.firstElementChild.style.filter=`brightness(${1-a*.22})${M?'':` blur(${a*1.2}px)`}`});
-
-  /* Nether -> Overworld environment blend */
-  vill.visible=vw>.001;
-  scene.fog.color.copy(fogN).lerp(fogD,vw);scene.fog.density=.017-.0065*vw;
-  amb.color.copy(ambN).lerp(ambD,vw);amb.intensity=.85-.3*vw;
-  dl.color.copy(dlN).lerp(dlD,vw);dl.intensity=.9-.15*vw;
-  camLight.intensity=1.2*(1-vw);
-  vig.style.opacity=(1-vw*.6).toFixed(3);
-  pfl.style.opacity=pf.toFixed(3);
-
-  /* village life: panic, raid march, golem charge */
-  if(vill.visible){
-    const rd=cl((p7-.56)/.04),mr=cl((p7-.45)/.55),gr=cl((p7-.55)/.45);
-    vlgs.forEach(v=>{const d=v.userData;
-      v.position.y=GY+rd*Math.abs(Math.sin(t*9+d.ph))*.9;
-      v.rotation.y=d.ry+Math.sin(t*.7+d.ph)*.3*(1-rd);
-      d.legs.forEach((l,i)=>l.rotation.x=Math.sin(t*11+(i?PI:0))*.6*rd)});
-    const am=mr>0?.5:.08;
-    pils.forEach(q=>{const d=q.userData;
-      q.position.z=d.zs+mr*24;
-      q.position.y=GY+Math.abs(Math.sin(t*7+d.ph))*.12;
-      q.rotation.y=Math.sin(t*.6+d.ph)*.12;
-      d.legs.forEach((l,i)=>l.rotation.x=Math.sin(t*7+d.ph+(i?PI:0))*am)});
-    const sw2=Math.sin(t*4)*(gr>0?1:.15);
-    golB.position.z=-190-7*gr;
-    golB.userData.legs.forEach((l,i)=>l.rotation.x=(i?sw2:-sw2)*.5);
-    golB.userData.arms.forEach((a,i)=>a.rotation.x=(i?-sw2:sw2)*.4);
-    golA.rotation.y=.45+Math.sin(t*.4)*.2;
-    golA.userData.arms.forEach((a,i)=>a.rotation.x=Math.sin(t*.9+i*PI)*.06);
-    [vp1,vp2].forEach((q,i)=>{q.rotation.y=Math.sin(t*.35+i*2)*.9+(i?-.6:.6);q.position.x=q.userData.bx+Math.sin(t*.3+i*3)*1.2;aP(q,t*.6)});
-  }
-
-  /* captions for the portal/village section */
-  caps.forEach(c=>{const o=cl((p7-c.a)/.03)*cl((c.b-p7)/.03);
-    if(Math.abs(o-c.o)>.004){c.o=o;c.e.style.opacity=o.toFixed(3);c.g.style.transform=`translateY(${((1-o)*34).toFixed(1)}px)`;c.e.classList.toggle('on',o>.5)}});
-
-  bgu.t.value=t;bgu.s.value=cl(y/maxY);bgu.f.value=fo;bgu.k.value=cl(1-Math.abs(q2-.5)*2);bgu.vv.value=vw;
-  xp.style.width=cl(y/maxY)*100+'%';
-  ren.render(scene,cam);
-}
-resize();frame();
-})();
+ScrollTrigger.create({trigger:document.body,start:'top top',end:'bottom bottom',onUpdate:s=>{gsap.to(window,{duration:0});prog=s.progress;$('#bar').style.width=(s.progress*100)+'%'}});
+gsap.from('#title span',{y:120,rotateX:-90,opacity:0,stagger:.07,duration:1,ease:'back.out(2)'});
+gsap.from('.tag,.sub,#hero .btn',{y:30,opacity:0,stagger:.2,delay:.8,duration:.8});
+gsap.utils.toArray('section h2').forEach(h=>gsap.from(h,{scrollTrigger:{trigger:h,start:'top 85%'},x:-80,opacity:0,duration:.8}));
+gsap.from('.card',{scrollTrigger:{trigger:'.grid',start:'top 80%'},y:90,rotateX:-40,opacity:0,stagger:.18,duration:.9,ease:'power3.out'});
+gsap.from('.ip',{scrollTrigger:{trigger:'#join',start:'top 60%'},x:-120,opacity:0,stagger:.15,duration:.7});
+document.querySelectorAll('.card').forEach(c=>{
+  c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect();gsap.to(c,{rotateY:((e.clientX-r.left)/r.width-.5)*16,rotateX:-((e.clientY-r.top)/r.height-.5)*16,duration:.3,transformPerspective:700})});
+  c.addEventListener('mouseleave',()=>gsap.to(c,{rotateX:0,rotateY:0,duration:.5}))});
+// horizontal gallery
+const tr=$('#track');
+const dist=()=>tr.scrollWidth-innerWidth+innerWidth*.06;
+gsap.to(tr,{x:()=>-dist(),ease:'none',scrollTrigger:{trigger:'#gal',start:'top top',end:()=>'+='+dist(),pin:true,scrub:1,invalidateOnRefresh:true}});
+gsap.utils.toArray('.shot').forEach((s,i)=>{
+  gsap.fromTo(s,{rotateY:i%2?-14:14,y:i%2?40:-40},{rotateY:i%2?14:-14,y:i%2?-40:40,ease:'none',scrollTrigger:{trigger:'#gal',start:'top top',end:()=>'+='+dist(),scrub:1}});
+  gsap.to(s.querySelector('img'),{xPercent:-9,ease:'none',scrollTrigger:{trigger:'#gal',start:'top top',end:()=>'+='+dist(),scrub:1}})});
+gsap.from('#ent p',{scrollTrigger:{trigger:'#ent',start:'top 60%'},y:40,opacity:0,duration:1});
+gsap.from('footer .px',{scrollTrigger:{trigger:'footer',start:'top 80%'},scale:.7,opacity:0,stagger:.2,duration:.8});
 </script>
 </body>
 </html>
